@@ -28,8 +28,6 @@ export default function aeroMapper() {
           </p>
         </div>
       </section>
-
-      {/* Tambah bagian lainnya */}
     </div>
   );
 }

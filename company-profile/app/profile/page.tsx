@@ -27,9 +27,8 @@ export default function Profile() {
         </div>
       </section>
       {/* ========================================================= */}
-      {/* BAGIAN KEDUA: STRUKTUR ORGANISASI LENGKAP */}
+      {/* BAGIAN KEDUA: STRUKTUR ORGANISASI */}
       {/* ========================================================= */}
-      {/* Pastikan container utama memiliki Flexbox untuk memusatkan semua konten di dalamnya */}
       // Bagian Kedua: STRUKTUR ORGANISASI LENGKAP
       <section className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
         <h2
