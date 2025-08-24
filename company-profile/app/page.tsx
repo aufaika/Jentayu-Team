@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
         className="relative h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/page1.png')" }}
       >
-        {/* Overlay tipis supaya teks terbaca */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/10"></div>
 
         {/* Konten */}
@@ -49,7 +50,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- BAGIAN KEDUA (ABOUT US) --- */}
+      {/* ABOUT US */}
       <section className="h-screen flex items-center justify-center bg-gray-100">
         <div className="container mx-auto p-8 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16">
           {/* FOTO */}
@@ -83,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- BAGIAN KETIGA (OUR ROBOT) --- */}
+      {/* OUR ROBOT */}
       <section className="h-screen flex flex-col items-center justify-center bg-white p-8">
         <h2
           className="text-5xl font-extrabold mb-2"
@@ -96,27 +97,21 @@ export default function Home() {
         </p>
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-16">
           <div className="text-center">
-            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center">
-              {/* Tempat Gambar Racing Plane */}
-            </div>
+            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center"></div>
             <p className="font-bold text-lg">Racing Plane</p>
           </div>
           <div className="text-center">
-            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center">
-              {/* Tempat Gambar Aeromapper */}
-            </div>
+            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center"></div>
             <p className="font-bold text-lg">Aeromapper</p>
           </div>
           <div className="text-center">
-            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center">
-              {/* Tempat Gambar Copter */}
-            </div>
+            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center"></div>
             <p className="font-bold text-lg">Copter</p>
           </div>
         </div>
       </section>
 
-      {/* --- BAGIAN KEEMPAT (OUR SPONSORED) --- */}
+      {/* OUR SPONSORED */}
       <section className="h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
         <h2
           className="text-5xl font-extrabold mb-12"
@@ -137,6 +132,86 @@ export default function Home() {
             ))}
         </div>
       </section>
+
+      {/* FOOTER */}
+      <footer className="h-screen bg-gray-100 flex flex-col justify-between text-[#515050]">
+        {/* Konten utama */}
+        <div className="flex-1 flex items-center justify-center px-8">
+          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {/* Logo / gambar kiri */}
+            <div className="bg-gray-200 w-full h-60 flex items-center justify-center">
+              <span className="font-bold">Logo / Image</span>
+            </div>
+
+            {/* Kontak */}
+            <div>
+              <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
+              <p className="font-bold">Student Center Universitas Diponegoro</p>
+              <p className="text-sm leading-relaxed">
+                Jl. Prof. Soedarto S.H, Tembalang, Kec. Tembalang, <br />
+                Kota Semarang, Jawa Tengah, 50275
+              </p>
+              <p className="mt-4">📞 +62-822-2528-3769</p>
+              <p className="mt-2">✉️ undip.jentayuteam@gmail.com</p>
+            </div>
+
+            {/* Sosmed */}
+            <div className="flex flex-col space-y-4">
+              <a
+                href="https://instagram.com/undipjentayu"
+                target="_blank"
+                className="flex items-center space-x-2"
+              >
+                <span className="text-xl">📷</span>
+                <span>undipjentayu</span>
+              </a>
+              <a
+                href="https://youtube.com/@jentayuuundip7239"
+                target="_blank"
+                className="flex items-center space-x-2"
+              >
+                <span className="text-xl">▶️</span>
+                <span>jentayuuundip7239</span>
+              </a>
+              <a
+                href="https://tiktok.com/@jentayu.undip"
+                target="_blank"
+                className="flex items-center space-x-2"
+              >
+                <span className="text-xl">🎵</span>
+                <span>jentayu.undip</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bagian bawah */}
+        <div className="py-6 flex flex-col items-center space-y-3 bg-white"></div>
+        <div className="w-full">
+          <div className="py-6 flex items-center justify-center space-x-8 bg-white">
+            <img
+              src="/undip.png"
+              alt="UNDIP Logo"
+              className="h-16 object-contain"
+            />
+            <img
+              src="/jentayu.png"
+              alt="JENTAYU Logo"
+              className="h-12 object-contain"
+            />
+            <img
+              src="/urdc.png"
+              alt="URDC Logo"
+              className="h-12 object-contain"
+            />
+          </div>
+
+          {/* copyright full abu-abu */}
+          <div className="bg-gray-200 py-3 text-center text-sm text-[#515050]">
+            © 2025 Jentayu. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
