@@ -1,4 +1,4 @@
-export default function Profile() {
+export default function BoardPage() {
   return (
     <div className="bg-gray-100">
       {/* ========================================================= */}

@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<null | "profile" | "sub">(null);
 
   return (
     <nav className="bg-white fixed w-full z-10 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          {/* Logo + Name */}
+          {/* Logo */}
           <div className="flex items-center">
             <img
               src="/logo jentayu.png"
@@ -24,23 +24,66 @@ export default function Navbar() {
             <Link href="/" className="text-black hover:text-red-600">
               HOME
             </Link>
-            <Link href="/profile" className="text-black hover:text-red-600">
-              PROFILE
-            </Link>
+
+            {/* PROFILE Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() =>
+                  setOpenMenu(openMenu === "profile" ? null : "profile")
+                }
+                className="flex items-center text-gray-700 focus:outline-none hover:text-red-600 transition-colors duration-200"
+              >
+                PROFILE
+                <span
+                  className={`ml-1 transform transition-transform duration-200 ${
+                    openMenu === "profile" ? "rotate-180" : ""
+                  }`}
+                >
+                  ▼
+                </span>
+              </button>
+
+              {openMenu === "profile" && (
+                <div
+                  className="absolute top-full mt-2 bg-white border rounded shadow-lg min-w-[250px]"
+                  onMouseLeave={() => setOpenMenu(null)}
+                >
+                  <Link
+                    href="/profile/about"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600 whitespace-nowrap"
+                  >
+                    ABOUT US
+                  </Link>
+                  <Link
+                    href="/profile/board"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600 whitespace-nowrap"
+                  >
+                    BOARD OF DIRECTORS
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* SUB TEAM Dropdown */}
             <div className="relative">
               <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-700 focus:outline-none hover:text-red-600 transition-colors duration-200"
+                onClick={() => setOpenMenu(openMenu === "sub" ? null : "sub")}
+                className="flex items-center text-gray-700 focus:outline-none hover:text-red-600 transition-colors duration-200"
               >
                 SUB TEAM
+                <span
+                  className={`ml-1 transform transition-transform duration-200 ${
+                    openMenu === "sub" ? "rotate-180" : ""
+                  }`}
+                >
+                  ▼
+                </span>
               </button>
 
-              {isOpen && (
+              {openMenu === "sub" && (
                 <div
-                  className="absolute top-full mt-2 bg-white border rounded shadow-lg w-48"
-                  onMouseLeave={() => setIsOpen(false)}
+                  className="absolute top-full mt-2 bg-white border rounded shadow-lg min-w-[200px]"
+                  onMouseLeave={() => setOpenMenu(null)}
                 >
                   <Link
                     href="/sub-team/racing-plane"

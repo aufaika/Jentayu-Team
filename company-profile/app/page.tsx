@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
@@ -47,7 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- BAGIAN KEDUA --- */}
+      {/* --- BAGIAN KEDUA (ABOUT US) --- */}
       <section className="h-screen flex items-center justify-center bg-gray-100">
         <div className="container mx-auto p-8 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16">
           {/* FOTO */}
@@ -59,7 +61,6 @@ export default function Home() {
 
           {/* DESKRIPSI ABOUT US */}
           <div className="w-full md:w-1/2 text-center md:text-left">
-            {/* INI YANG SUDAH DIUBAH */}
             <h2
               className="text-5xl font-extrabold mb-4"
               style={{ color: "#515050" }}
@@ -71,12 +72,17 @@ export default function Home() {
               in aeromodeling by developing efficiently designed UAVs. Operating
               within the rules of the competition is the community's goal.
             </p>
-            <button className="bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-400 transition duration-300">
+
+            <Link
+              href="/profile/about"
+              className="inline-block bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-400 transition duration-300"
+            >
               About
-            </button>
+            </Link>
           </div>
         </div>
       </section>
+
       {/* --- BAGIAN KETIGA (OUR ROBOT) --- */}
       <section className="h-screen flex flex-col items-center justify-center bg-white p-8">
         <h2
