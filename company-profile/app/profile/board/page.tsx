@@ -11,7 +11,7 @@ export default function BoardPage() {
         >
           Board Of Directors
         </h2>
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="container mx-auto max-w-4xl text-justify">
           <p className="text-gray-700 leading-relaxed mx-auto">
             Jentayu Team is an innovative collaborative platform that combines
             the expertise of two main pillars: the Technical Division and the

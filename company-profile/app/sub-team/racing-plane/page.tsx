@@ -1,31 +1,34 @@
 export default function RacingPlane() {
   return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* Bagian 1: Judul */}
-      <section className="min-h-screen py-20 px-8 text-center bg-white flex flex-col justify-center items-center">
-        <h2
-          className="text-5xl font-extrabold mb-4"
-          style={{ color: "#515050" }}
-        >
+    <div className="w-full">
+      {/* ================= PAGE 1 : Racing Plane ================= */}
+      <section
+        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+        style={{ backgroundImage: "url('/racing1.png')" }}
+      >
+        {/* overlay hitam transparan */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        {/* teks judul */}
+        <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold">
           RACING PLANE
-        </h2>
+        </h1>
       </section>
 
-      {/* Bagian 2: Logo dan Deskripsi */}
-      <section className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
-        <div className="w-32 h-32 bg-gray-300 rounded-lg mb-8 flex items-center justify-center">
-          logo rp
-        </div>
+      {/* ================= PAGE 2 : Description Team ================= */}
+      <section
+        className="relative w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-6 text-center"
+        style={{ backgroundImage: "url('/bg-description-team.jpg')" }} // << FOTO BG 2
+      >
+        {/* overlay hitam transparan */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
-        <h3
-          className="text-4xl font-extrabold mb-4"
-          style={{ color: "#515050" }}
-        >
-          DESCRIPTION TEAM
-        </h3>
+        <div className="relative z-10 max-w-4xl">
+          <h2 className="text-white text-4xl md:text-5xl font-extrabold mb-6">
+            DESCRIPTION TEAM
+          </h2>
 
-        <div className="container mx-auto max-w-4xl text-center">
-          <p className="text-gray-700 leading-relaxed mx-auto">
+          <p className="text-white text-lg leading-relaxed text-justify">
             Jentayu Racing Plane team participated in a time attack-style
             competition under the "Fast and On Track" theme. This challenge
             required participants to demonstrate both speed and precision, as
@@ -40,100 +43,290 @@ export default function RacingPlane() {
         </div>
       </section>
 
-      {/* Bagian 3: Background image */}
-      <div
-        className="relative w-full h-[80vh] bg-cover bg-center"
-        style={{ backgroundImage: "url('/sub.png')" }}
-      >
-        <div className="absolute inset-0 bg-black/30"></div>
-      </div>
-
-      {/* Bagian 4: Team Member */}
-      <section className="py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
-        <h2
-          className="text-5xl font-extrabold mb-12"
-          style={{ color: "#515050" }}
-        >
+      {/* ================= PAGE 3 : Team Member ================= */}
+      <section className="min-h-screen py-20 px-8 bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col items-center">
+        {/* TITLE */}
+        <h2 className="text-5xl font-extrabold mb-16 text-gray-800 tracking-wide">
           TEAM MEMBER
         </h2>
 
-        {/* Chief */}
-        <div className="flex flex-col items-center mb-16">
-          <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
-            foto
+        {/* GENERAL MANAGER */}
+        <div className="flex flex-col items-center mb-4">
+          <div className="w-40 h-40 rounded-lg overflow-hidden shadow-lg mb-4">
+            <img
+              src="/team/ulil.jpg"
+              alt="General Manager"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <p className="font-bold" style={{ color: "#515050" }}>
-            CHIEF OF RACING PLANE
-          </p>
-          <p style={{ color: "#515050" }}>M. RIZQI AUNILLAH</p>
+          <p className="font-bold text-gray-800">GENERAL MANAGER</p>
+          <p className="text-gray-600 mt-2">MUHAMMAD ULIL AHKAM</p>
         </div>
 
-        {/* Project Manager */}
-        <div className="flex flex-col items-center mb-16">
-          <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
-            foto
+        {/* FIRST ROW */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          {/* INTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/ariesta.jpg"
+                alt="Head of Internal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF INTERNAL</p>
+            <p className="text-gray-600 mt-2">ARIESTA PERMATASARI</p>
           </div>
-          <p className="font-bold" style={{ color: "#515050" }}>
-            PROJECT MANAGER
-          </p>
-          <p style={{ color: "#515050" }}>SUCI RAHMADANI</p>
-        </div>
-      </section>
 
-      {/* Bagian 5: Sub Divisi */}
-      <section className="min-h-screen py-20 px-8 text-center bg-white flex flex-col justify-center items-center">
-        <div className="flex flex-col md:flex-row justify-center items-start md:space-x-12 mb-16 w-full">
-          <div className="flex-1 text-center mb-16 md:mb-0">
-            <p className="font-bold" style={{ color: "#515050" }}>
-              HEAD OF ELECTRICAL
-            </p>
-            <p style={{ color: "#515050" }}>AZIS SURYA DARPITA</p>
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA ELECTRA NARESWARI</p>
           </div>
-          <div className="flex-1 text-center mb-16 md:mb-0">
-            <p className="font-bold" style={{ color: "#515050" }}>
-              HEAD OF DESIGN
-            </p>
-            <p style={{ color: "#515050" }}>JOSHUA ADI PRATAMA</p>
-          </div>
-          <div className="flex-1 text-center">
-            <p className="font-bold" style={{ color: "#515050" }}>
-              HEAD OF MANUFACTURE
-            </p>
-            <p style={{ color: "#515050" }}>AWALUDIN SUBEKTI</p>
-          </div>
-        </div>
 
-        <div className="flex flex-col items-center mb-16">
-          <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
-            foto
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
           </div>
-          <p className="font-bold" style={{ color: "#515050" }}>
-            STAFF ELECTRICAL
-          </p>
-          <p style={{ color: "#515050" }}>ABID NANTA LEGOWO</p>
-        </div>
-      </section>
-
-      {/* Bagian 6: Staff Electrical Lanjutan */}
-      <section className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
-        <div className="flex flex-col items-center mb-16">
-          <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
-            foto
-          </div>
-          <p className="font-bold" style={{ color: "#515050" }}>
-            STAFF ELECTRICAL
-          </p>
-          <p style={{ color: "#515050" }}>NUGIE PRAMAYUDHA</p>
         </div>
 
-        <div className="flex flex-col items-center mb-16">
-          <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
-            foto
+        {/* SECOND ROW */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-16">
+          {/* INTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/ariesta.jpg"
+                alt="Head of Internal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF INTERNAL</p>
+            <p className="text-gray-600 mt-2">ARIESTA PERMATASARI</p>
           </div>
-          <p className="font-bold" style={{ color: "#515050" }}>
-            STAFF ELECTRICAL
-          </p>
-          <p style={{ color: "#515050" }}>KRISNA SATRIA UTOMO</p>
+
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA ELECTRA NARESWARI</p>
+          </div>
+
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-16">
+          {/* INTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/ariesta.jpg"
+                alt="Head of Internal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF INTERNAL</p>
+            <p className="text-gray-600 mt-2">ARIESTA PERMATASARI</p>
+          </div>
+
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA ELECTRA NARESWARI</p>
+          </div>
+
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-16">
+          {/* INTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/ariesta.jpg"
+                alt="Head of Internal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF INTERNAL</p>
+            <p className="text-gray-600 mt-2">ARIESTA PERMATASARI</p>
+          </div>
+
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA ELECTRA NARESWARI</p>
+          </div>
+
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-16">
+          {/* INTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/ariesta.jpg"
+                alt="Head of Internal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF INTERNAL</p>
+            <p className="text-gray-600 mt-2">ARIESTA PERMATASARI</p>
+          </div>
+
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA ELECTRA NARESWARI</p>
+          </div>
+
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
+          </div>
+        </div>
+        {/* FIRST ROW */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-8">
+          {/* EMPTY SLOT supaya posisi tetap */}
+          <div></div>
+
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA KUSUMANINGTYAS</p>
+          </div>
+
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
+          </div>
+        </div>
+        {/* FIRST ROW */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-8">
+          {/* EMPTY SLOT supaya posisi tetap */}
+          <div></div>
+
+          {/* EKSTERNAL */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/calista.jpg"
+                alt="Head of Eksternal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF EKSTERNAL</p>
+            <p className="text-gray-600 mt-2">CALISTA KUSUMANINGTYAS</p>
+          </div>
+
+          {/* MEDIA */}
+          <div className="text-center flex flex-col items-center">
+            <div className="w-28 h-28 rounded-lg overflow-hidden shadow-md mb-4">
+              <img
+                src="/team/dhafin.jpg"
+                alt="Head of Media"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-bold text-gray-800">HEAD OF MEDIA</p>
+            <p className="text-gray-600 mt-2">DHAFIN RAHMAT RAMDHANI</p>
+          </div>
         </div>
       </section>
     </div>

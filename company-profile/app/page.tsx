@@ -134,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="h-screen bg-gray-100 flex flex-col justify-between text-[#515050]">
+      <footer className="h-screen flex flex-col justify-between text-[#515050] bg-white">
         {/* Konten utama */}
         <div className="flex-1 flex items-center justify-center px-8">
           <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -186,23 +186,12 @@ export default function Home() {
         </div>
 
         {/* Bagian bawah */}
-        <div className="py-6 flex flex-col items-center space-y-3 bg-white"></div>
         <div className="w-full">
-          <div className="py-6 flex items-center justify-center space-x-8 bg-white">
+          <div className="py-3 flex items-center justify-center space-x-8">
             <img
-              src="/undip.png"
-              alt="UNDIP Logo"
-              className="h-16 object-contain"
-            />
-            <img
-              src="/jentayu.png"
-              alt="JENTAYU Logo"
-              className="h-12 object-contain"
-            />
-            <img
-              src="/urdc.png"
-              alt="URDC Logo"
-              className="h-12 object-contain"
+              src="/logo all.png"
+              alt="Logo"
+              className="h-10 object-contain"
             />
           </div>
 
