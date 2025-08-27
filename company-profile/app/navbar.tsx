@@ -7,7 +7,10 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<null | "profile" | "sub">(null);
 
   return (
-    <nav className="bg-white fixed w-full z-10 shadow-md">
+    <nav
+      className="fixed w-full z-10 shadow-md"
+      style={{ backgroundColor: "#909092" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
@@ -21,7 +24,10 @@ export default function Navbar() {
 
           {/* Menu */}
           <div className="flex space-x-6 items-center font-medium relative">
-            <Link href="/" className="text-black hover:text-red-600">
+            <Link
+              href="/"
+              className="text-white hover:text-gray-300 transition-colors duration-200"
+            >
               HOME
             </Link>
 
@@ -31,7 +37,7 @@ export default function Navbar() {
                 onClick={() =>
                   setOpenMenu(openMenu === "profile" ? null : "profile")
                 }
-                className="flex items-center text-gray-700 focus:outline-none hover:text-red-600 transition-colors duration-200"
+                className="flex items-center text-white focus:outline-none hover:text-gray-300 transition-colors duration-200"
               >
                 PROFILE
                 <span
@@ -45,18 +51,19 @@ export default function Navbar() {
 
               {openMenu === "profile" && (
                 <div
-                  className="absolute top-full mt-2 bg-white border rounded shadow-lg min-w-[250px]"
+                  className="absolute top-full mt-2 rounded shadow-lg min-w-[250px]"
+                  style={{ backgroundColor: "#909092" }}
                   onMouseLeave={() => setOpenMenu(null)}
                 >
                   <Link
                     href="/profile/about"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600 whitespace-nowrap"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black whitespace-nowrap"
                   >
                     ABOUT US
                   </Link>
                   <Link
                     href="/profile/board"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600 whitespace-nowrap"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black whitespace-nowrap"
                   >
                     BOARD OF DIRECTORS
                   </Link>
@@ -68,7 +75,7 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setOpenMenu(openMenu === "sub" ? null : "sub")}
-                className="flex items-center text-gray-700 focus:outline-none hover:text-red-600 transition-colors duration-200"
+                className="flex items-center text-white focus:outline-none hover:text-gray-300 transition-colors duration-200"
               >
                 SUB TEAM
                 <span
@@ -82,24 +89,25 @@ export default function Navbar() {
 
               {openMenu === "sub" && (
                 <div
-                  className="absolute top-full mt-2 bg-white border rounded shadow-lg min-w-[200px]"
+                  className="absolute top-full mt-2 rounded shadow-lg min-w-[200px]"
+                  style={{ backgroundColor: "#909092" }}
                   onMouseLeave={() => setOpenMenu(null)}
                 >
                   <Link
                     href="/sub-team/racing-plane"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black"
                   >
                     RACING PLANE
                   </Link>
                   <Link
                     href="/sub-team/aeromapper"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black"
                   >
                     AEROMAPPER
                   </Link>
                   <Link
                     href="/sub-team/copter"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black"
                   >
                     COPTER
                   </Link>
@@ -107,16 +115,28 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/achievement" className="text-black hover:text-red-600">
+            <Link
+              href="/achievement"
+              className="text-white hover:text-gray-300 transition-colors duration-200"
+            >
               ACHIEVEMENT
             </Link>
-            <Link href="/gallery" className="text-black hover:text-red-600">
+            <Link
+              href="/gallery"
+              className="text-white hover:text-gray-300 transition-colors duration-200"
+            >
               GALLERY
             </Link>
-            <Link href="/news" className="text-black hover:text-red-600">
+            <Link
+              href="/news"
+              className="text-white hover:text-gray-300 transition-colors duration-200"
+            >
               NEWS
             </Link>
-            <Link href="/contact" className="text-black hover:text-red-600">
+            <Link
+              href="/contact"
+              className="text-white hover:text-gray-300 transition-colors duration-200"
+            >
               CONTACT US
             </Link>
           </div>
