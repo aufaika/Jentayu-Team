@@ -84,7 +84,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR ROBOT */}
       <section className="h-screen flex flex-col items-center justify-center bg-white p-8">
         <h2
           className="text-5xl font-extrabold mb-2"
@@ -92,21 +91,45 @@ export default function Home() {
         >
           Our Robot
         </h2>
-        <p className="text-lg text-gray-600 mb-12">
+        <p className="text-lg mb-12" style={{ color: "#515050" }}>
           Stop Dreaming, Start Flying!
         </p>
+
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-16">
           <div className="text-center">
-            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center"></div>
+            <div className="w-48 h-48 relative mb-4">
+              <Image
+                src="/robot-racing.png"
+                alt="Racing Plane"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
             <p className="font-bold text-lg">Racing Plane</p>
           </div>
+
           <div className="text-center">
-            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center"></div>
-            <p className="font-bold text-lg">Aeromapper</p>
+            <div className="w-48 h-48 relative mb-4">
+              <Image
+                src="/robot-wing.png"
+                alt="Fixed Wing"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+            <p className="font-bold text-lg">Fixed Wing</p>
           </div>
+
           <div className="text-center">
-            <div className="w-48 h-48 bg-gray-200 mb-4 flex items-center justify-center"></div>
-            <p className="font-bold text-lg">Copter</p>
+            <div className="w-48 h-48 relative mb-4">
+              <Image
+                src="/robot-vtol.png"
+                alt="VTOL"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+            <p className="font-bold text-lg">VTOL</p>
           </div>
         </div>
       </section>

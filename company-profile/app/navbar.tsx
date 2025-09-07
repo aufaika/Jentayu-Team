@@ -57,13 +57,13 @@ export default function Navbar() {
                 >
                   <Link
                     href="/profile/about"
-                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black whitespace-nowrap"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500 whitespace-nowrap"
                   >
                     ABOUT US
                   </Link>
                   <Link
                     href="/profile/board"
-                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black whitespace-nowrap"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500 whitespace-nowrap"
                   >
                     BOARD OF DIRECTORS
                   </Link>
@@ -95,19 +95,19 @@ export default function Navbar() {
                 >
                   <Link
                     href="/sub-team/racing-plane"
-                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500"
                   >
                     RACING PLANE
                   </Link>
                   <Link
                     href="/sub-team/aeromapper"
-                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500"
                   >
                     AEROMAPPER
                   </Link>
                   <Link
                     href="/sub-team/copter"
-                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-black"
+                    className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500"
                   >
                     COPTER
                   </Link>
