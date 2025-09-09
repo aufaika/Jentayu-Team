@@ -220,7 +220,7 @@ export default function Home() {
 
           {/* copyright full abu-abu */}
           <div className="bg-gray-200 py-3 text-center text-sm text-[#515050]">
-            © 2025 Jentayu. All Rights Reserved.
+            Copyright © Jentayu | 2025
           </div>
         </div>
       </footer>

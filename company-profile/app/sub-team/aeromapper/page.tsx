@@ -145,7 +145,7 @@ export default function Aeromapper() {
   return (
     <div className="w-full">
       <Head>
-        <title>Aeromapper</title>
+        <title>FIXED WING</title>
       </Head>
 
       {/* Page 1: Jumbotron */}
@@ -155,7 +155,7 @@ export default function Aeromapper() {
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold">
-          AEROMAPPER
+          FIXED WING
         </h1>
       </section>
 

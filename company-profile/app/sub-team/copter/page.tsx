@@ -169,7 +169,7 @@ export default function RacingPlane() {
         <div className="absolute inset-0 bg-black/40"></div>
 
         <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold">
-          COPTER
+          VTOL
         </h1>
       </section>
 

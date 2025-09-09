@@ -103,13 +103,13 @@ export default function Navbar() {
                     href="/sub-team/aeromapper"
                     className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500"
                   >
-                    AEROMAPPER
+                    FIXED WING
                   </Link>
                   <Link
                     href="/sub-team/copter"
                     className="block px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500"
                   >
-                    COPTER
+                    VTOL
                   </Link>
                 </div>
               )}

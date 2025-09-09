@@ -18,7 +18,11 @@ const galleryImages = [
 
 // ===================== COMPONENT CARD =====================
 const GalleryCard = ({ src }: { src: string }) => (
-  <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg">
+  <div
+    className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg 
+               transform transition duration-300 ease-in-out 
+               hover:scale-105 active:scale-110"
+  >
     <Image src={src} alt="" fill style={{ objectFit: "cover" }} />
   </div>
 );
@@ -27,18 +31,24 @@ const GalleryCard = ({ src }: { src: string }) => (
 export default function GalleryPage() {
   return (
     <div className="bg-white text-gray-800">
-      {/* SECTION PERTAMA: BANNER */}
+      {/* ===================== SECTION PERTAMA: BANNER ===================== */}
       <section
-        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[70vh] bg-cover bg-center"
         style={{ backgroundImage: "url('/gallery.png')" }}
       >
+        {/* Overlay gelap */}
         <div className="absolute inset-0 bg-black/40"></div>
-        <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold tracking-widest">
+
+        {/* Judul GALLERY ditempel di tengah banner */}
+        <h1
+          className="absolute inset-0 flex items-center justify-center 
+                     text-white text-5xl md:text-6xl font-extrabold tracking-widest z-10"
+        >
           GALLERY
         </h1>
       </section>
 
-      {/* SECTION KEDUA: GALERI FOTO */}
+      {/* ===================== SECTION KEDUA: GALERI FOTO ===================== */}
       <section className="py-16 px-4 sm:px-8 md:px-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 gap-6">
