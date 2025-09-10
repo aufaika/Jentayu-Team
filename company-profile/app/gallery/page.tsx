@@ -33,17 +33,11 @@ export default function GalleryPage() {
     <div className="bg-white text-gray-800">
       {/* ===================== SECTION PERTAMA: BANNER ===================== */}
       <section
-        className="relative w-full h-[70vh] bg-cover bg-center"
-        style={{ backgroundImage: "url('/gallery.png')" }}
+        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url('/gallery.png')` }}
       >
-        {/* Overlay gelap */}
-        <div className="absolute inset-0 bg-black/40"></div>
-
-        {/* Judul GALLERY ditempel di tengah banner */}
-        <h1
-          className="absolute inset-0 flex items-center justify-center 
-                     text-white text-5xl md:text-6xl font-extrabold tracking-widest z-10"
-        >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold">
           GALLERY
         </h1>
       </section>
