@@ -1,4 +1,6 @@
 import "./globals.css";
+
+import { Montserrat } from "next/font/google";
 import Navbar from "./navbar";
 
 export const metadata = {
@@ -6,13 +8,17 @@ export const metadata = {
   description: "UAV Research Team Diponegoro University",
 };
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={montserrat.className}>
       <body>
         <Navbar />
         <main className="pt-16">{children}</main>
