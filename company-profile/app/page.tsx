@@ -37,16 +37,19 @@ export default function Home() {
         <div className="container mx-auto p-8 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16">
           {/* FOTO */}
           <div className="w-full md:w-1/3 flex-shrink-0">
-            <div className="aspect-w-1 aspect-h-1 bg-gray-300 flex items-center justify-center p-12">
-              <span className="text-xl font-bold">foto</span>
+            <div className="aspect-w-1 aspect-h-1  flex items-center justify-center p-12">
+              <Image
+                src="/about-us-photo.png"
+                alt="About Us Image"
+                height={338}
+                width={549}
+              />
             </div>
           </div>
 
           {/* DESKRIPSI ABOUT US */}
           <div className="w-full md:w-1/2 text-center md:text-left">
-            <h2
-              className="text-2xl lg:text-5xl font-extrabold mb-4 text-dark-grey"
-            >
+            <h2 className="text-2xl lg:text-5xl font-extrabold mb-4 text-dark-grey">
               About Us
             </h2>
             <p className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
@@ -65,75 +68,112 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="h-screen flex flex-col items-center justify-center bg-white p-8">
-        <h2
-          className="text-2xl md:text-5xl font-extrabold mb-2"
-          style={{ color: "#515050" }}
-        >
-          Our Robot
-        </h2>
-        <p className="text-base md:text-lg mb-12" style={{ color: "#515050" }}>
-          Stop Dreaming, Start Flying!
-        </p>
+      <section className="min-h-screen flex flex-col items-center justify-center bg-white p-8 py-16">
+        <div className="w-full max-w-6xl flex flex-col items-center">
+          <h2 className="text-center text-2xl md:text-5xl text-dark-grey font-extrabold mb-2 w-full">
+            Our Robot
+          </h2>
+          <p className="text-base md:text-lg mb-8 md:mb-12 w-full text-dark-grey text-center">
+            Stop Dreaming, Start Flying!
+          </p>
 
-        <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-16">
-          <div className="text-center">
-            <div className="w-48 h-48 relative mb-4">
-              <Image
-                src="/robot-racing.png"
-                alt="Racing Plane"
-                fill
-                style={{ objectFit: "contain" }}
-              />
+          <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-48 items-center justify-center">
+            <div className="text-center">
+              <div className="w-40 h-40 md:w-48 md:h-48 relative mb-4 mx-auto">
+                <Image
+                  src="/robot-racing.png"
+                  alt="Racing Plane"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <p className="font-bold text-base md:text-lg">Racing Plane</p>
             </div>
-            <p className="font-bold text-base md:text-lg">Racing Plane</p>
-          </div>
 
-          <div className="text-center">
-            <div className="w-48 h-48 relative mb-4">
-              <Image
-                src="/robot-wing.png"
-                alt="Fixed Wing"
-                fill
-                style={{ objectFit: "contain" }}
-              />
+            <div className="text-center">
+              <div className="w-40 h-40 md:w-48 md:h-48 relative mb-4 mx-auto md:-mt-36">
+                <Image
+                  src="/robot-wing.png"
+                  alt="Fixed Wing"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <p className="font-bold text-base md:text-lg">Fixed Wing</p>
             </div>
-            <p className="font-bold text-base md:text-lg">Fixed Wing</p>
-          </div>
 
-          <div className="text-center">
-            <div className="w-48 h-48 relative mb-4">
-              <Image
-                src="/robot-vtol.png"
-                alt="VTOL"
-                fill
-                style={{ objectFit: "contain" }}
-              />
+            <div className="text-center">
+              <div className="w-40 h-40 md:w-48 md:h-48 relative mb-4 mx-auto">
+                <Image
+                  src="/robot-vtol.png"
+                  alt="VTOL"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <p className="font-bold text-base md:text-lg">VTOL</p>
             </div>
-            <p className="font-bold text-base md:text-lg">VTOL</p>
           </div>
         </div>
       </section>
 
       {/* OUR SPONSORED */}
       <section className="h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
-        <h2
-          className="text-5xl font-extrabold mb-12"
-          style={{ color: "#515050" }}
-        >
-          Our Sponsored
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-4xl">
-          {Array(6)
-            .fill(0)
-            .map((_, index) => (
-              <div
-                key={index}
-                className="w-32 h-32 bg-gray-200 flex items-center justify-center"
-              >
-                {/* Tempat Logo Sponsor */}
-              </div>
-            ))}
+        <div className="max-h-full">
+          <h2 className="text-2xl md:text-5xl text-center text-dark-grey font-extrabold mb-12">
+            Our Sponsored
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-4xl items-center">
+            <Image
+              src="/solidworks.png"
+              alt="Solidworks Logo"
+              width={1920}
+              height={1080}
+              unoptimized
+            />
+            <Image
+              src="/ica.png"
+              alt="ICA Logo"
+              width={262}
+              height={249}
+              unoptimized
+            />
+            <Image
+              src="/gemfan.png"
+              alt="Gemfan Logo"
+              width={1920}
+              height={1080}
+              unoptimized
+            />
+            <Image
+              src="/cuav.png"
+              alt="Cuav Logo"
+              width={334}
+              height={96}
+              unoptimized
+            />
+            <Image
+              src="/innovstive.png"
+              alt="Innovative Logo"
+              width={1920}
+              height={1080}
+              unoptimized
+            />
+            <Image
+              src="/polymaker.png"
+              alt="Polymaker Logo"
+              width={1920}
+              height={1080}
+              unoptimized
+            />
+            <Image
+              src="/buaya-aerotech.png"
+              alt="Buaya Aerotech Logo"
+              width={1920}
+              height={1080}
+              unoptimized
+            />
+          </div>
         </div>
       </section>
 

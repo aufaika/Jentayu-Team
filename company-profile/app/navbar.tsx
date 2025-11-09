@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed w-full z-10 shadow-md bg-white ${roboto.className}`}
+      className={`fixed w-full z-20 shadow-md bg-white ${roboto.className}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between h-16">
@@ -67,7 +67,7 @@ export default function Navbar() {
                     >
                       <PopoverPanel
                         anchor="top"
-                        className="z-10 divide-y divide-white/5 rounded-xl bg-white text-sm/6 transition duration-200 ease-in-out [--anchor-gap:--spacing(5)] data-closed:-translate-y-1 data-closed:opacity-0"
+                        className="z-30 divide-y divide-white/5 rounded-xl bg-white text-sm/6 transition duration-200 ease-in-out [--anchor-gap:--spacing(5)] data-closed:-translate-y-1 data-closed:opacity-0"
                       >
                         <Link
                           href="/profile/about"
@@ -117,7 +117,7 @@ export default function Navbar() {
                     >
                       <PopoverPanel
                         anchor="top"
-                        className="z-10 divide-y divide-white/5 rounded-xl bg-white text-sm/6 transition duration-200 ease-in-out [--anchor-gap:--spacing(5)] data-closed:-translate-y-1 data-closed:opacity-0"
+                        className="z-30 divide-y divide-white/5 rounded-xl bg-white text-sm/6 transition duration-200 ease-in-out [--anchor-gap:--spacing(5)] data-closed:-translate-y-1 data-closed:opacity-0"
                       >
                         <Link
                           href="/sub-team/racing-plane"

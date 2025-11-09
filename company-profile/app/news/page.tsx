@@ -65,14 +65,14 @@ export default function NewsPage() {
             {visibleCount < news.length ? (
               <button
                 onClick={loadMore}
-                className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition"
+                className="px-6 py-3 bg-gray-700 text-white rounded-4xl hover:bg-gray-800 transition"
               >
                 Lebih Banyak
               </button>
             ) : (
               <button
                 onClick={showLess}
-                className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition"
+                className="px-6 py-3 bg-gray-700 text-white rounded-4xl hover:bg-gray-800 transition"
               >
                 Lebih Sedikit
               </button>
