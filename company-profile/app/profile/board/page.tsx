@@ -30,10 +30,10 @@ export default function BoardPage() {
         {/* ========================================================= */}
 
         <section className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
-          <h2 className="text-5xl font-extrabold mb-7 text-dark-grey">
+          <h2 className="text-2xl md:text-5xl font-extrabold mb-7 text-dark-grey">
             Board Of Directors
           </h2>
-          <p className="mb-12 max-w-3/4 text-justify font-medium text-black">
+          <p className="mb-12 max-w-3/4 text-justify font-medium text-black text-sm md:text-base">
             Jentayu Team is an innovative collaborative platform that combines
             the expertise of two main pillars: the Technical Division and the
             Non-Technical Division. The Technical Division, which is the
@@ -50,8 +50,8 @@ export default function BoardPage() {
             <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
               foto
             </div>
-            <p className="font-extrabold text-dark-grey">GENERAL MANAGER</p>
-            <p className="-mt-1 text-dark-grey font-light">
+            <p className="font-extrabold text-sm md:text-base text-dark-grey">GENERAL MANAGER</p>
+            <p className="-mt-1 text-dark-grey text-sm md:text-base font-light">
               MUHAMMAD ULIL AHKAM
             </p>
           </div>
@@ -61,8 +61,8 @@ export default function BoardPage() {
               <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
                 foto
               </div>
-              <p className="font-extrabold text-dark-grey">HEAD OF TECHNICAL</p>
-              <p className="-mt-1 text-dark-grey font-light">
+              <p className="font-extrabold text-dark-grey text-sm md:text-base">HEAD OF TECHNICAL</p>
+              <p className="-mt-1 text-sm md:text-base text-dark-grey font-light">
                 MUHAMMAD HASAN AL FATHIN
               </p>
             </div>
@@ -71,16 +71,16 @@ export default function BoardPage() {
               <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
                 foto
               </div>
-              <p className="font-extrabold text-dark-grey">
+              <p className="font-extrabold text-sm md:text-base text-dark-grey">
                 HEAD OF NON TECHNICAL
               </p>
-              <p className="-mt-1 text-dark-grey font-light">
+              <p className="-mt-1 text-sm md:text-base text-dark-grey font-light">
                 HANIFAH ADITYASARI PUTRI WIYANRES
               </p>
             </div>
           </div>
 
-          <h3 className="text-4xl font-extrabold mt-16 mb-12 text-dark-grey">
+          <h3 className="text-xl md:text-4xl font-extrabold mt-16 mb-12 text-dark-grey">
             Non-Technical Division
           </h3>
 
@@ -89,8 +89,8 @@ export default function BoardPage() {
               <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
                 foto
               </div>
-              <p className="font-extrabold text-dark-grey">HEAD OF INTERNAL</p>
-              <p className="-mt-1 text-dark-grey font-light">
+              <p className="font-extrabold text-sm md:text-base text-dark-grey">HEAD OF INTERNAL</p>
+              <p className="-mt-1 text-sm md:text-base text-dark-grey font-light">
                 ARIESTA PERMATASARI
               </p>
             </div>
@@ -99,8 +99,8 @@ export default function BoardPage() {
               <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
                 foto
               </div>
-              <p className="font-extrabold text-dark-grey">HEAD OF EXTERNAL</p>
-              <p className="-mt-1 text-dark-grey font-light">
+              <p className="font-extrabold text-sm md:text-base text-dark-grey">HEAD OF EXTERNAL</p>
+              <p className="-mt-1 text-sm md:text-base text-dark-grey font-light">
                 CALISTA ELECTRA NARESWARI
               </p>
             </div>
@@ -109,8 +109,8 @@ export default function BoardPage() {
               <div className="w-32 h-32 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
                 foto
               </div>
-              <p className="font-extrabold text-dark-grey">HEAD OF MEDIA</p>
-              <p className="-mt-1 text-dark-grey font-light">
+              <p className="font-extrabold text-sm md:text-base text-dark-grey">HEAD OF MEDIA</p>
+              <p className="-mt-1 text-sm md:text-base text-dark-grey font-light">
                 DHAFIN RAHMAT RAMDHANI
               </p>
             </div>
