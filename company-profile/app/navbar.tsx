@@ -13,13 +13,12 @@ import {
 const roboto = Roboto({ subsets: ["latin"] });
 
 export default function Navbar() {
-  const [openMenu, setOpenMenu] = useState<null | "profile" | "sub">(null);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [isSubTeamOpen, setIsSubTeamOpen] = useState<boolean>(false);
 
   return (
     <nav
-      className={`fixed w-full z-10 shadow-md bg-main-blue ${roboto.className}`}
+      className={`fixed w-full z-10 shadow-md bg-white ${roboto.className}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between h-16">
@@ -36,7 +35,7 @@ export default function Navbar() {
           <div className="flex space-x-6 items-center text-sm font-medium relative">
             <Link
               href="/"
-              className="text-gray-300 hover:text-white transition-colors duration-200"
+              className="text-gray-800 hover:text-black transition-colors duration-200"
             >
               HOME
             </Link>
@@ -52,7 +51,7 @@ export default function Navbar() {
                   <>
                     <PopoverButton
                       className={`flex items-center cursor-pointer data-active:outline-none data-hover:text-white data-active:text-white ${
-                        isProfileOpen ? "text-white" : "text-gray-300"
+                        isProfileOpen ? "text-black" : "text-gray-800"
                       } transition-colors duration-200`}
                     >
                       PROFILE
@@ -102,7 +101,7 @@ export default function Navbar() {
                   <>
                     <PopoverButton
                       className={`flex items-center cursor-pointer data-active:outline-none data-hover:text-white data-active:text-white ${
-                        isSubTeamOpen ? "text-white" : "text-gray-300"
+                        isSubTeamOpen ? "text-black" : "text-gray-800"
                       } transition-colors duration-200`}
                     >
                       SUB TEAM
@@ -150,25 +149,25 @@ export default function Navbar() {
 
             <Link
               href="/achievement"
-              className="text-gray-300 hover:text-white transition-colors duration-200"
+              className="text-gray-800 hover:text-black transition-colors duration-200"
             >
               ACHIEVEMENT
             </Link>
             <Link
               href="/gallery"
-              className="text-gray-300 hover:text-white transition-colors duration-200"
+              className="text-gray-800 hover:text-black transition-colors duration-200"
             >
               GALLERY
             </Link>
             <Link
               href="/news"
-              className="text-gray-300 hover:text-white transition-colors duration-200"
+              className="text-gray-800 hover:text-black transition-colors duration-200"
             >
               NEWS
             </Link>
             <Link
               href="/contact"
-              className="text-gray-300 hover:text-white transition-colors duration-200"
+              className="text-gray-800 hover:text-black transition-colors duration-200"
             >
               CONTACT US
             </Link>
