@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 
 const roboto = Roboto({ subsets: ["latin"] });
 
-const AboutUsFooter = () => {
+const ContactUsFooter = () => {
   return (
     <footer
       className={`${montserrat.className} pt-18 h-full flex flex-col justify-between text-white bg-dark-blue`}
@@ -127,4 +127,4 @@ const AboutUsFooter = () => {
   );
 };
 
-export default AboutUsFooter;
+export default ContactUsFooter;

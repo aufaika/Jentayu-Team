@@ -1,4 +1,4 @@
-import AboutUsFooter from "@/app/components/AboutUsFooter";
+import ContactUsFooter from "@/app/components/ContactUsFooter";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -33,7 +33,7 @@ export default function BoardPage() {
           <h2 className="text-5xl font-extrabold mb-7 text-dark-grey">
             Board Of Directors
           </h2>
-          <p className="mb-12 max-w-3/4 text-justify font-medium">
+          <p className="mb-12 max-w-3/4 text-justify font-medium text-black">
             Jentayu Team is an innovative collaborative platform that combines
             the expertise of two main pillars: the Technical Division and the
             Non-Technical Division. The Technical Division, which is the
@@ -117,7 +117,7 @@ export default function BoardPage() {
           </div>
         </section>
       </div>
-      <AboutUsFooter />
+      <ContactUsFooter />
     </>
   );
 }

@@ -1,8 +1,15 @@
 "use client";
 
+import ContactUsFooter from "@/app/components/ContactUsFooter";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
+
 export default function AboutPage() {
   return (
-    <div className="bg-white text-gray-800">
+    <div className={`bg-white text-gray-800 ${montserrat.className}`}>
       {/* SECTION PERTAMA: BANNER FULL HALAMAN */}
       <section
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
@@ -16,10 +23,10 @@ export default function AboutPage() {
       </section>
 
       <section className="w-full min-h-screen flex flex-col items-center justify-center bg-gray-100 px-6 py-20">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-8">
+        <h2 className="text-4xl md:text-5xl text-dark-grey font-extrabold text-center mb-8">
           About Us
         </h2>
-        <p className="max-w-3xl text-justify text-gray-700 leading-relaxed">
+        <p className="max-w-3xl text-justify text-black leading-relaxed">
           Jentayu Team was founded in 2017 by students of Diponegoro University.
           Initially, this team started as an Aeromodelling Club at Department of
           Mechanical Engineering but has since evolved into the university's
@@ -31,6 +38,8 @@ export default function AboutPage() {
           community's goal.
         </p>
       </section>
+      
+      <ContactUsFooter />
     </div>
   );
 }

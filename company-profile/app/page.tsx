@@ -1,7 +1,7 @@
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
-import AboutUsFooter from "./components/AboutUsFooter";
+import ContactUsFooter from "./components/ContactUsFooter";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -45,8 +45,7 @@ export default function Home() {
           {/* DESKRIPSI ABOUT US */}
           <div className="w-full md:w-1/2 text-center md:text-left">
             <h2
-              className="text-2xl lg:text-5xl font-extrabold mb-4"
-              style={{ color: "#515050" }}
+              className="text-2xl lg:text-5xl font-extrabold mb-4 text-dark-grey"
             >
               About Us
             </h2>
@@ -139,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <AboutUsFooter />
+      <ContactUsFooter />
     </div>
   );
 }
