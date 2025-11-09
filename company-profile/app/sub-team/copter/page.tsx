@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import Head from "next/head";
 import { Montserrat } from "next/font/google";
+import { Transition } from "@headlessui/react";
+import { useInView } from "react-intersection-observer";
 import ContactUsFooter from "@/app/components/ContactUsFooter";
 
 const montserrat = Montserrat({
@@ -11,24 +15,24 @@ const teamData = {
   chief: {
     role: "CHIEF OF VTOL",
     name: "RIFQI NURRAHMAN PUTRA",
-    photo: "/photos/rifqi-nurrahman-putra.jpg", // Example path
+    photo: "/photos/rifqi-nurrahman-putra.jpg",
   },
   projectManager: {
     role: "PROJECT MANAGER",
     name: "SAFA HAFIZHAN SINTIJI",
-    photo: "/photos/safa-hafizhan-sintiji.jpg", // Example path
+    photo: "/photos/safa-hafizhan-sintiji.jpg",
   },
   media: {
     role: "MEDIA",
     name: "FAJAR HERDIANSYAH",
-    photo: "/photos/fajar-herdiansyah.jpg", // Example path
+    photo: "/photos/fajar-herdiansyah.jpg",
   },
   subTeams: [
     {
       head: {
         role: "HEAD OF ELECTRICAL",
         name: "MUHAMMAD HUMAM FAIZ",
-        photo: "/photos/muhammad-humam-faiz.jpg", // Example path
+        photo: "/photos/muhammad-humam-faiz.jpg",
       },
       members: [
         {
@@ -57,7 +61,7 @@ const teamData = {
       head: {
         role: "HEAD OF PROGRAM",
         name: "MUHAMMAD TSAQIF H.",
-        photo: "/photos/muhammad-tsaqif-h.jpg", // Example path
+        photo: "/photos/muhammad-tsaqif-h.jpg",
       },
       members: [
         {
@@ -101,7 +105,7 @@ const teamData = {
       head: {
         role: "HEAD OF MECHANICS",
         name: "FRANKLYN LOKLAS M.",
-        photo: "/photos/franklyn-loklas-m.jpg", // Example path
+        photo: "/photos/franklyn-loklas-m.jpg",
       },
       members: [
         {
@@ -134,19 +138,28 @@ const teamData = {
   ],
 };
 
-// MemberCard component now accepts a 'photo' prop
 const MemberCard = ({
   role,
   name,
   photo,
+  show,
+  delay = 0,
 }: {
   role: string;
   name: string;
   photo: string;
+  show: boolean;
+  delay?: number;
 }) => (
-  <div className="flex flex-col items-center text-center">
+  <Transition
+    show={show}
+    enter={`transition-all duration-700 delay-[${delay}ms]`}
+    enterFrom="opacity-0 scale-90"
+    enterTo="opacity-100 scale-100"
+    as="div"
+    className="flex flex-col items-center text-center"
+  >
     <div className="w-24 h-24 rounded-lg overflow-hidden shadow-lg mb-2">
-      {/* Conditionally render image if photo path is provided */}
       {photo ? (
         <img src={photo} alt={name} className="w-full h-full object-cover" />
       ) : (
@@ -157,10 +170,40 @@ const MemberCard = ({
     </div>
     <p className="font-bold text-gray-800 text-sm leading-tight">{role}</p>
     <p className="text-gray-600 mt-1 text-xs leading-tight">{name}</p>
-  </div>
+  </Transition>
 );
 
 export default function RacingPlane() {
+  const { ref: bannerRef, inView: bannerInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: descRef, inView: descInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: teamRef, inView: teamInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const { ref: chiefRef, inView: chiefInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: managersRef, inView: managersInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: subTeamsRef, inView: subTeamsInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   return (
     <div className={`w-full ${montserrat.className}`}>
       <Head>
@@ -169,29 +212,52 @@ export default function RacingPlane() {
 
       {/* ================= PAGE 1 : copter ================= */}
       <section
+        ref={bannerRef}
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: "url('/copter1.png')" }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold">
+        <Transition
+          show={bannerInView}
+          enter="transition-all duration-1000 delay-300"
+          enterFrom="opacity-0 scale-95"
+          enterTo="opacity-100 scale-100"
+          as="h1"
+          className="relative z-10 text-white text-5xl md:text-6xl font-extrabold"
+        >
           VTOL
-        </h1>
+        </Transition>
       </section>
 
       {/* ================= PAGE 2 : Description Team ================= */}
       <section
+        ref={descRef}
         className="relative w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-6 text-center"
-        style={{ backgroundImage: "url('/bg-description-team.jpg')" }} // << FOTO BG 2
+        style={{ backgroundImage: "url('/bg-description-team.jpg')" }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="relative z-10 max-w-4xl">
-          <h2 className="text-white text-4xl md:text-5xl font-extrabold mb-6">
+          <Transition
+            show={descInView}
+            enter="transition-all duration-700 delay-200"
+            enterFrom="opacity-0 translate-y-8"
+            enterTo="opacity-100 translate-y-0"
+            as="h2"
+            className="text-white text-4xl md:text-5xl font-extrabold mb-6"
+          >
             DESCRIPTION TEAM
-          </h2>
+          </Transition>
 
-          <p className="text-white text-lg leading-relaxed text-justify">
+          <Transition
+            show={descInView}
+            enter="transition-all duration-1000 delay-400"
+            enterFrom="opacity-0 translate-y-12"
+            enterTo="opacity-100 translate-y-0"
+            as="p"
+            className="text-white text-lg leading-relaxed text-justify"
+          >
             Jentayu Copter Team, specializing in Vertical Take-Off Landing
             (VTOL) technology, focused on designing and developing a quad-copter
             style drone for the competition. The theme for this year, "Long-
@@ -202,47 +268,68 @@ export default function RacingPlane() {
             aircraft across both environments. Indoor operations demanded
             precise control due to the confined spaces, while outdoor missions
             emphasized endurance and range.
-          </p>
+          </Transition>
         </div>
       </section>
 
       {/* ================= PAGE 3 : Team Member ================= */}
-      <section className="min-h-screen py-20 px-4 bg-gray-50 flex flex-col items-center text-gray-800">
-        <h2 className="text-5xl font-extrabold mb-16 tracking-wide">
+      <section
+        ref={teamRef}
+        className="min-h-screen py-20 px-4 bg-gray-50 flex flex-col items-center text-gray-800"
+      >
+        <Transition
+          show={teamInView}
+          enter="transition-all duration-700 delay-100"
+          enterFrom="opacity-0 translate-y-8"
+          enterTo="opacity-100 translate-y-0"
+          as="h2"
+          className="text-5xl font-extrabold mb-16 tracking-wide"
+        >
           TEAM MEMBER
-        </h2>
+        </Transition>
 
         {/* Chief of VTOL */}
-        <div className="flex justify-center mb-8">
+        <div ref={chiefRef} className="flex justify-center mb-8">
           <MemberCard
             role={teamData.chief.role}
             name={teamData.chief.name}
             photo={teamData.chief.photo}
+            show={chiefInView}
+            delay={200}
           />
         </div>
 
         {/* Project Manager and Media */}
-        <div className="flex justify-around w-full max-w-3xl mb-12">
+        <div ref={managersRef} className="flex justify-around w-full max-w-3xl mb-12">
           <MemberCard
             role={teamData.projectManager.role}
             name={teamData.projectManager.name}
             photo={teamData.projectManager.photo}
+            show={managersInView}
+            delay={200}
           />
           <MemberCard
             role={teamData.media.role}
             name={teamData.media.name}
             photo={teamData.media.photo}
+            show={managersInView}
+            delay={350}
           />
         </div>
 
         {/* Sub-teams: Electrical, Program, Mechanics */}
-        <div className="flex flex-col md:flex-row justify-between items-start w-full max-w-6xl space-y-12 md:space-y-0 md:space-x-8">
+        <div
+          ref={subTeamsRef}
+          className="flex flex-col md:flex-row justify-between items-start w-full max-w-6xl space-y-12 md:space-y-0 md:space-x-8"
+        >
           {teamData.subTeams.map((team, index) => (
             <div key={index} className="flex flex-col items-center w-full">
               <MemberCard
                 role={team.head.role}
                 name={team.head.name}
                 photo={team.head.photo}
+                show={subTeamsInView}
+                delay={200 + index * 150}
               />
               <div className="flex flex-col items-center mt-8 space-y-8">
                 {team.members.map((member, subIndex) => (
@@ -251,6 +338,8 @@ export default function RacingPlane() {
                     role={member.role}
                     name={member.name}
                     photo={member.photo}
+                    show={subTeamsInView}
+                    delay={400 + index * 150 + subIndex * 100}
                   />
                 ))}
               </div>

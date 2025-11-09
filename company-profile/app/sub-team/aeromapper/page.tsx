@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import { Transition } from "@headlessui/react";
+import { useInView } from "react-intersection-observer";
 import ContactUsFooter from "@/app/components/ContactUsFooter";
 
 const montserrat = Montserrat({
@@ -133,12 +137,21 @@ const MemberCard = ({
   role,
   name,
   photo,
+  show,
+  delay = 0,
 }: {
   role: string;
   name: string;
   photo: string;
+  show: boolean;
+  delay?: number;
 }) => (
-  <div
+  <Transition
+    show={show}
+    enter={`transition-all duration-700 delay-[${delay}ms]`}
+    enterFrom="opacity-0 scale-90"
+    enterTo="opacity-100 scale-100"
+    as="div"
     className={`flex flex-col items-center text-center ${montserrat.className}`}
   >
     <div className="w-24 h-24 rounded-lg overflow-hidden shadow-lg mb-2">
@@ -146,10 +159,40 @@ const MemberCard = ({
     </div>
     <p className="font-bold text-gray-800 text-sm leading-tight">{role}</p>
     <p className="text-gray-600 mt-1 text-xs leading-tight">{name}</p>
-  </div>
+  </Transition>
 );
 
 export default function Aeromapper() {
+  const { ref: bannerRef, inView: bannerInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: descRef, inView: descInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: teamRef, inView: teamInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const { ref: chiefRef, inView: chiefInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: managersRef, inView: managersInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const { ref: subTeamsRef, inView: subTeamsInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   return (
     <div className={`w-full ${montserrat.className}`}>
       <Head>
@@ -158,26 +201,49 @@ export default function Aeromapper() {
 
       {/* Page 1: Jumbotron */}
       <section
+        ref={bannerRef}
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url('/aeromapper1.png')` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
-        <h1 className="relative z-10 text-white text-5xl md:text-6xl font-extrabold">
+        <Transition
+          show={bannerInView}
+          enter="transition-all duration-1000 delay-300"
+          enterFrom="opacity-0 scale-95"
+          enterTo="opacity-100 scale-100"
+          as="h1"
+          className="relative z-10 text-white text-5xl md:text-6xl font-extrabold"
+        >
           FIXED WING
-        </h1>
+        </Transition>
       </section>
 
       {/* Page 2: Description Team */}
       <section
+        ref={descRef}
         className="relative w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center p-8 text-center"
         style={{ backgroundImage: `url('/bg-description-team.jpg')` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 max-w-4xl">
-          <h2 className="text-white text-4xl md:text-5xl font-extrabold mb-6">
+          <Transition
+            show={descInView}
+            enter="transition-all duration-700 delay-200"
+            enterFrom="opacity-0 translate-y-8"
+            enterTo="opacity-100 translate-y-0"
+            as="h2"
+            className="text-white text-4xl md:text-5xl font-extrabold mb-6"
+          >
             DESCRIPTION TEAM
-          </h2>
-          <p className="text-white text-lg leading-relaxed text-justify">
+          </Transition>
+          <Transition
+            show={descInView}
+            enter="transition-all duration-1000 delay-400"
+            enterFrom="opacity-0 translate-y-12"
+            enterTo="opacity-100 translate-y-0"
+            as="p"
+            className="text-white text-lg leading-relaxed text-justify"
+          >
             Jentayu Aeromapper is a fixed-wing model UAV (Unmanned Aerial
             Vehicle) Team focused on both remote piloting and autonomous flight
             operations. It is equipped with capabilities to carry out various
@@ -185,49 +251,70 @@ export default function Aeromapper() {
             2024, Jentayu Aeromapper participated in the Kontes Robot Terbang
             Indonesia (KRTI), where the theme of the competition was "First
             Responder in River Disaster Areas." This mission was designed to
-            test and demonstrate the UAV’s capabilities in addressing the
+            test and demonstrate the UAV's capabilities in addressing the
             challenges of disaster response in river regions.
-          </p>
+          </Transition>
         </div>
       </section>
 
       {/* Page 3: Team Member */}
-      <section className="min-h-screen py-20 px-4 bg-gray-50 flex flex-col items-center text-gray-800">
-        <h2 className="text-5xl font-extrabold mb-16 tracking-wide">
+      <section
+        ref={teamRef}
+        className="min-h-screen py-20 px-4 bg-gray-50 flex flex-col items-center text-gray-800"
+      >
+        <Transition
+          show={teamInView}
+          enter="transition-all duration-700 delay-100"
+          enterFrom="opacity-0 translate-y-8"
+          enterTo="opacity-100 translate-y-0"
+          as="h2"
+          className="text-5xl font-extrabold mb-16 tracking-wide"
+        >
           TEAM MEMBER
-        </h2>
+        </Transition>
 
         {/* Chief of Fixed Wing */}
-        <div className="flex justify-center mb-8">
+        <div ref={chiefRef} className="flex justify-center mb-8">
           <MemberCard
             role={teamData.chief.role}
             name={teamData.chief.name}
             photo={teamData.chief.photo}
+            show={chiefInView}
+            delay={200}
           />
         </div>
 
         {/* Project Manager and Media */}
-        <div className="flex justify-around w-full max-w-3xl mb-12">
+        <div ref={managersRef} className="flex justify-around w-full max-w-3xl mb-12">
           <MemberCard
             role={teamData.projectManager.role}
             name={teamData.projectManager.name}
             photo={teamData.projectManager.photo}
+            show={managersInView}
+            delay={200}
           />
           <MemberCard
             role={teamData.media.role}
             name={teamData.media.name}
             photo={teamData.media.photo}
+            show={managersInView}
+            delay={350}
           />
         </div>
 
         {/* Sub-teams: Electrical, Design, Manufacture */}
-        <div className="flex flex-col md:flex-row justify-between items-start w-full max-w-6xl space-y-12 md:space-y-0 md:space-x-8">
+        <div
+          ref={subTeamsRef}
+          className="flex flex-col md:flex-row justify-between items-start w-full max-w-6xl space-y-12 md:space-y-0 md:space-x-8"
+        >
           {teamData.subTeams.map((team, index) => (
             <div key={index} className="flex flex-col items-center w-full">
               <MemberCard
                 role={team.head.role}
                 name={team.head.name}
                 photo={team.head.photo}
+                show={subTeamsInView}
+                delay={200 + index * 150}
               />
               <div className="flex flex-col items-center mt-8 space-y-8">
                 {team.members.map((member, subIndex) => (
@@ -236,6 +323,8 @@ export default function Aeromapper() {
                     role={member.role}
                     name={member.name}
                     photo={member.photo}
+                    show={subTeamsInView}
+                    delay={400 + index * 150 + subIndex * 100}
                   />
                 ))}
               </div>

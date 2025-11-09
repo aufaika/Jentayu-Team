@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Montserrat } from "next/font/google";
+import { Transition } from "@headlessui/react";
+import { useInView } from "react-intersection-observer";
 import ContactUsFooter from "../components/ContactUsFooter";
 
 const montserrat = Montserrat({
@@ -74,7 +76,7 @@ const achievements = [
   },
 ];
 
-// ===================== COMPONENT IMAGE (hover + popup) =====================
+// ===================== COMPONENT IMAGE (hover + popup with animation) =====================
 const AchievementImage = ({ src, alt }: { src: string; alt: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -90,27 +92,49 @@ const AchievementImage = ({ src, alt }: { src: string; alt: string }) => {
         onClick={() => setIsOpen(true)}
       />
 
-      {isOpen && (
+      <Transition show={isOpen}>
         <div
-          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center"
           onClick={() => setIsOpen(false)}
         >
-          <div className="relative max-w-4xl w-full p-4">
-            <Image
-              src={src}
-              alt={alt}
-              width={1200}
-              height={800}
-              className="rounded-lg mx-auto"
-            />
-          </div>
+          {/* Background overlay with fade */}
+          <Transition.Child
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="absolute inset-0 bg-black/70" />
+          </Transition.Child>
+
+          {/* Image with scale and fade */}
+          <Transition.Child
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <div className="relative max-w-4xl w-full p-4 z-10">
+              <Image
+                src={src}
+                alt={alt}
+                width={1200}
+                height={800}
+                className="rounded-lg mx-auto"
+              />
+            </div>
+          </Transition.Child>
         </div>
-      )}
+      </Transition>
     </>
   );
 };
 
-// ===================== COMPONENT CARD =====================
+// ===================== COMPONENT CARD (with scroll animation) =====================
 const AchievementCard = ({
   year,
   image,
@@ -121,24 +145,70 @@ const AchievementCard = ({
   image: string;
   contest: string;
   awards: string[];
-}) => (
-  <section className="min-h-screen py-20 px-6 flex flex-col items-center bg-white even:bg-gray-100">
-    {/* Tahun bold paling tebal */}
-    <h2 className="text-5xl font-extrabold mb-6 text-gray-800">{year}</h2>
+}) => {
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
-    {/* Contest agak bold */}
-    <p className="text-xl text-gray-600 mb-10 font-bold">{contest}</p>
+  return (
+    <section
+      ref={ref}
+      className="min-h-screen py-20 px-6 flex flex-col items-center bg-white even:bg-gray-100"
+    >
+      {/* Year with fade + slide up */}
+      <Transition
+        show={inView}
+        enter="transition-all duration-700 delay-100"
+        enterFrom="opacity-0 translate-y-8"
+        enterTo="opacity-100 translate-y-0"
+        as="h2"
+        className="text-5xl font-extrabold mb-6 text-gray-800"
+      >
+        {year}
+      </Transition>
 
-    <AchievementImage src={image} alt={`Achievement ${year}`} />
+      {/* Contest with fade + slide up */}
+      <Transition
+        show={inView}
+        enter="transition-all duration-700 delay-200"
+        enterFrom="opacity-0 translate-y-8"
+        enterTo="opacity-100 translate-y-0"
+        as="p"
+        className="text-xl text-gray-600 mb-10 font-bold"
+      >
+        {contest}
+      </Transition>
 
-    {/* Awards agak bold */}
-    <ul className="text-lg space-y-2 text-gray-700 text-center max-w-2xl font-bold">
-      {awards.map((award, i) => (
-        <li key={i}>{award}</li>
-      ))}
-    </ul>
-  </section>
-);
+      {/* Image with fade + scale */}
+      <Transition
+        show={inView}
+        enter="transition-all duration-700 delay-300"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        as="div"
+      >
+        <AchievementImage src={image} alt={`Achievement ${year}`} />
+      </Transition>
+
+      {/* Awards with staggered fade + slide up */}
+      <ul className="text-lg space-y-2 text-gray-700 text-center max-w-2xl font-bold">
+        {awards.map((award, i) => (
+          <Transition
+            key={i}
+            show={inView}
+            enter={`transition-all duration-700 delay-[${400 + i * 100}ms]`}
+            enterFrom="opacity-0 translate-y-4"
+            enterTo="opacity-100 translate-y-0"
+            as="li"
+          >
+            {award}
+          </Transition>
+        ))}
+      </ul>
+    </section>
+  );
+};
 
 // ===================== PAGE =====================
 export default function AchievementPage() {
@@ -151,10 +221,17 @@ export default function AchievementPage() {
       >
         <div className="absolute inset-0 bg-black/40"></div>
 
-        {/* Judul statis kayak tahun, tapi tetap putih */}
-        <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl md:text-6xl font-extrabold z-10">
+        <Transition
+          appear={true}
+          show={true}
+          enter="transition-all duration-1000 delay-300"
+          enterFrom="opacity-0 scale-95"
+          enterTo="opacity-100 scale-100"
+          as="h1"
+          className="absolute inset-0 flex items-center justify-center text-white text-5xl md:text-6xl font-extrabold z-10"
+        >
           ACHIEVEMENT
-        </h1>
+        </Transition>
       </section>
 
       {/* SECTION KEDUA: LIST ACHIEVEMENT */}
