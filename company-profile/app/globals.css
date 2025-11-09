@@ -6,6 +6,7 @@
 }
 
 @theme {
+  --color-dark-grey: #515050;
   --color-main-blue: #000D81;
   --color-dark-blue: #1C2045;
 }

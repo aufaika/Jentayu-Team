@@ -1,12 +1,13 @@
-import { Roboto } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import AboutUsFooter from "./components/AboutUsFooter";
 
-const roboto = Roboto({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
+    <div className={montserrat.className}>
       {/* HERO SECTION */}
       <section
         className="relative h-screen bg-cover bg-center"
@@ -19,35 +20,13 @@ export default function Home() {
         <div
           style={{
             backgroundImage: 'url("/bg1.png")',
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            paddingLeft: "80px",
-            color: "white",
           }}
+          className="text-white pl-20 justify-center flex flex-col h-screen bg-center bg-cover"
         >
-          <h1
-            style={{
-              fontSize: "4rem",
-              fontWeight: "900",
-              fontStyle: "italic",
-              marginBottom: "0.2rem",
-              color: "#FFFFFF",
-            }}
-          >
+          <h1 className="z-10 text-2xl md:text-5xl font-black italic mb-1 text-white">
             JENTAYU TEAM
           </h1>
-          <p
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "700",
-              fontStyle: "italic",
-              color: "#FFFFFF",
-            }}
-          >
+          <p className="italic text-white z-10 font-bold text-xl md:text-2xl">
             UAV RESEARCH TEAM DIPONEGORO UNIVERSITY
           </p>
         </div>
@@ -66,12 +45,12 @@ export default function Home() {
           {/* DESKRIPSI ABOUT US */}
           <div className="w-full md:w-1/2 text-center md:text-left">
             <h2
-              className="text-5xl font-extrabold mb-4"
+              className="text-2xl lg:text-5xl font-extrabold mb-4"
               style={{ color: "#515050" }}
             >
               About Us
             </h2>
-            <p className="text-gray-700 mb-6 leading-relaxed">
+            <p className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
               This team was formed with a focus on innovation and breakthroughs
               in aeromodeling by developing efficiently designed UAVs. Operating
               within the rules of the competition is the community's goal.
@@ -79,7 +58,7 @@ export default function Home() {
 
             <Link
               href="/profile/about"
-              className="inline-block bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-400 transition duration-300"
+              className="inline-block text-sm md:text-base bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-400 transition duration-300"
             >
               About
             </Link>
@@ -89,12 +68,12 @@ export default function Home() {
 
       <section className="h-screen flex flex-col items-center justify-center bg-white p-8">
         <h2
-          className="text-5xl font-extrabold mb-2"
+          className="text-2xl md:text-5xl font-extrabold mb-2"
           style={{ color: "#515050" }}
         >
           Our Robot
         </h2>
-        <p className="text-lg mb-12" style={{ color: "#515050" }}>
+        <p className="text-base md:text-lg mb-12" style={{ color: "#515050" }}>
           Stop Dreaming, Start Flying!
         </p>
 
@@ -108,7 +87,7 @@ export default function Home() {
                 style={{ objectFit: "contain" }}
               />
             </div>
-            <p className="font-bold text-lg">Racing Plane</p>
+            <p className="font-bold text-base md:text-lg">Racing Plane</p>
           </div>
 
           <div className="text-center">
@@ -120,7 +99,7 @@ export default function Home() {
                 style={{ objectFit: "contain" }}
               />
             </div>
-            <p className="font-bold text-lg">Fixed Wing</p>
+            <p className="font-bold text-base md:text-lg">Fixed Wing</p>
           </div>
 
           <div className="text-center">
@@ -132,7 +111,7 @@ export default function Home() {
                 style={{ objectFit: "contain" }}
               />
             </div>
-            <p className="font-bold text-lg">VTOL</p>
+            <p className="font-bold text-base md:text-lg">VTOL</p>
           </div>
         </div>
       </section>
@@ -160,73 +139,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="h-screen flex flex-col justify-between text-[#515050] bg-white">
-        {/* Konten utama */}
-        <div className="flex-1 flex items-center justify-center px-8">
-          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Logo / gambar kiri */}
-            <div className="bg-gray-200 w-full h-60 flex items-center justify-center">
-              <span className="font-bold">Logo / Image</span>
-            </div>
-
-            {/* Kontak */}
-            <div>
-              <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
-              <p className="font-bold">Student Center Universitas Diponegoro</p>
-              <p className="text-sm leading-relaxed">
-                Jl. Prof. Soedarto S.H, Tembalang, Kec. Tembalang, <br />
-                Kota Semarang, Jawa Tengah, 50275
-              </p>
-              <p className="mt-4">📞 +62-822-2528-3769</p>
-              <p className="mt-2">✉️ undip.jentayuteam@gmail.com</p>
-            </div>
-
-            {/* Sosmed */}
-            <div className="flex flex-col space-y-4">
-              <a
-                href="https://instagram.com/undipjentayu"
-                target="_blank"
-                className="flex items-center space-x-2"
-              >
-                <span className="text-xl">📷</span>
-                <span>undipjentayu</span>
-              </a>
-              <a
-                href="https://youtube.com/@jentayuuundip7239"
-                target="_blank"
-                className="flex items-center space-x-2"
-              >
-                <span className="text-xl">▶️</span>
-                <span>jentayuuundip7239</span>
-              </a>
-              <a
-                href="https://tiktok.com/@jentayu.undip"
-                target="_blank"
-                className="flex items-center space-x-2"
-              >
-                <span className="text-xl">🎵</span>
-                <span>jentayu.undip</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Bagian bawah */}
-        <div className="w-full">
-          <div className="py-3 flex items-center justify-center space-x-8">
-            <img
-              src="/logo all.png"
-              alt="Logo"
-              className="h-10 object-contain"
-            />
-          </div>
-
-          {/* copyright full abu-abu */}
-          <div className={`bg-gray-200 py-3 text-center text-sm text-[#515050] ${roboto.className}`}>
-            Copyright © Jentayu | 2025
-          </div>
-        </div>
-      </footer>
-    </>
+      <AboutUsFooter />
+    </div>
   );
 }
