@@ -1,5 +1,8 @@
 "use client";
 
+import { Roboto } from "next/font/google";
+const roboto = Roboto({ subsets: ["latin"] });
+
 export default function ContactPage() {
   return (
     <div className="bg-white text-gray-800">
@@ -77,7 +80,9 @@ export default function ContactPage() {
           </div>
 
           {/* copyright full abu-abu */}
-          <div className="bg-gray-200 py-3 text-center text-sm text-[#515050]">
+          <div
+            className={`bg-gray-200 py-3 text-center text-sm text-[#515050] ${roboto.className}`}
+          >
             Copyright © Jentayu | 2025
           </div>
         </div>

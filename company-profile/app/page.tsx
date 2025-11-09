@@ -1,5 +1,8 @@
+import { Roboto } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+
+const roboto = Roboto({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -219,7 +222,7 @@ export default function Home() {
           </div>
 
           {/* copyright full abu-abu */}
-          <div className="bg-gray-200 py-3 text-center text-sm text-[#515050]">
+          <div className={`bg-gray-200 py-3 text-center text-sm text-[#515050] ${roboto.className}`}>
             Copyright © Jentayu | 2025
           </div>
         </div>
