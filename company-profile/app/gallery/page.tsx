@@ -1,4 +1,10 @@
 import Image from "next/image";
+import { Montserrat } from "next/font/google";
+import ContactUsFooter from "../components/ContactUsFooter";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
 
 // ===================== DATA GALERI =====================
 const galleryImages = [
@@ -30,7 +36,7 @@ const GalleryCard = ({ src }: { src: string }) => (
 // ===================== PAGE =====================
 export default function GalleryPage() {
   return (
-    <div className="bg-white text-gray-800">
+    <div className={`bg-white text-gray-800 ${montserrat.className}`}>
       {/* ===================== SECTION PERTAMA: BANNER ===================== */}
       <section
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
@@ -52,6 +58,7 @@ export default function GalleryPage() {
           </div>
         </div>
       </section>
+      <ContactUsFooter />
     </div>
   );
 }

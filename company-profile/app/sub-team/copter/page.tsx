@@ -1,5 +1,11 @@
 import React from "react";
 import Head from "next/head";
+import { Montserrat } from "next/font/google";
+import ContactUsFooter from "@/app/components/ContactUsFooter";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
 
 const teamData = {
   chief: {
@@ -156,7 +162,7 @@ const MemberCard = ({
 
 export default function RacingPlane() {
   return (
-    <div className="w-full">
+    <div className={`w-full ${montserrat.className}`}>
       <Head>
         <title>Copter Team</title>
       </Head>
@@ -252,6 +258,8 @@ export default function RacingPlane() {
           ))}
         </div>
       </section>
+
+      <ContactUsFooter />
     </div>
   );
 }

@@ -50,7 +50,7 @@ export default function Navbar() {
                 {({ open }) => (
                   <>
                     <PopoverButton
-                      className={`flex items-center cursor-pointer data-active:outline-none data-hover:text-white data-active:text-white ${
+                      className={`flex items-center cursor-pointer data-active:outline-none data-hover:text-black data-active:text-black ${
                         isProfileOpen ? "text-black" : "text-gray-800"
                       } transition-colors duration-200`}
                     >
@@ -100,7 +100,7 @@ export default function Navbar() {
                 {({ open }) => (
                   <>
                     <PopoverButton
-                      className={`flex items-center cursor-pointer data-active:outline-none data-hover:text-white data-active:text-white ${
+                      className={`flex items-center cursor-pointer data-active:outline-none data-hover:text-black data-active:text-black ${
                         isSubTeamOpen ? "text-black" : "text-gray-800"
                       } transition-colors duration-200`}
                     >

@@ -1,5 +1,11 @@
 "use client";
 import { useState } from "react";
+import { Montserrat } from "next/font/google";
+import ContactUsFooter from "../components/ContactUsFooter";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
 
 export default function NewsPage() {
   // Data dummy news (12 total)
@@ -26,7 +32,7 @@ export default function NewsPage() {
   const showLess = () => setVisibleCount(3);
 
   return (
-    <div className="bg-white text-gray-800">
+    <div className={`bg-white text-gray-800 ${montserrat.className}`}>
       {/* ================= HERO ================= */}
       <section
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
@@ -80,6 +86,7 @@ export default function NewsPage() {
           </div>
         </div>
       </section>
+      <ContactUsFooter />
     </div>
   );
 }

@@ -2,6 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Montserrat } from "next/font/google";
+import ContactUsFooter from "../components/ContactUsFooter";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
 
 // ===================== DATA ACHIEVEMENT =====================
 const achievements = [
@@ -121,12 +127,12 @@ const AchievementCard = ({
     <h2 className="text-5xl font-extrabold mb-6 text-gray-800">{year}</h2>
 
     {/* Contest agak bold */}
-    <p className="text-xl text-gray-600 mb-10 font-semibold">{contest}</p>
+    <p className="text-xl text-gray-600 mb-10 font-bold">{contest}</p>
 
     <AchievementImage src={image} alt={`Achievement ${year}`} />
 
     {/* Awards agak bold */}
-    <ul className="text-lg space-y-2 text-gray-700 text-center max-w-2xl font-semibold">
+    <ul className="text-lg space-y-2 text-gray-700 text-center max-w-2xl font-bold">
       {awards.map((award, i) => (
         <li key={i}>{award}</li>
       ))}
@@ -137,7 +143,7 @@ const AchievementCard = ({
 // ===================== PAGE =====================
 export default function AchievementPage() {
   return (
-    <div className="bg-white text-gray-800">
+    <div className={`bg-white text-gray-800 ${montserrat.className}`}>
       {/* SECTION PERTAMA: BANNER */}
       <section
         className="relative w-full h-screen bg-cover bg-center overflow-hidden"
@@ -155,6 +161,7 @@ export default function AchievementPage() {
       {achievements.map((ach, i) => (
         <AchievementCard key={i} {...ach} />
       ))}
+      <ContactUsFooter />
     </div>
   );
 }

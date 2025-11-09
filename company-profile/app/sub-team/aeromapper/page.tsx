@@ -1,5 +1,11 @@
 import React from "react";
+import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import ContactUsFooter from "@/app/components/ContactUsFooter";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
 
 const teamData = {
   chief: {
@@ -132,7 +138,9 @@ const MemberCard = ({
   name: string;
   photo: string;
 }) => (
-  <div className="flex flex-col items-center text-center">
+  <div
+    className={`flex flex-col items-center text-center ${montserrat.className}`}
+  >
     <div className="w-24 h-24 rounded-lg overflow-hidden shadow-lg mb-2">
       <img src={photo} alt={name} className="w-full h-full object-cover" />
     </div>
@@ -143,7 +151,7 @@ const MemberCard = ({
 
 export default function Aeromapper() {
   return (
-    <div className="w-full">
+    <div className={`w-full ${montserrat.className}`}>
       <Head>
         <title>FIXED WING</title>
       </Head>
@@ -235,6 +243,7 @@ export default function Aeromapper() {
           ))}
         </div>
       </section>
+      <ContactUsFooter />
     </div>
   );
 }
