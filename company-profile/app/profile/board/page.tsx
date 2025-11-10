@@ -4,8 +4,6 @@ import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
 
-import ContactUsFooter from "@/app/components/ContactUsFooter";
-
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default function BoardPage() {
@@ -37,9 +35,7 @@ export default function BoardPage() {
   return (
     <>
       <div className={`bg-gray-100 ${montserrat.className}`}>
-        {/* ========================================================= */}
-        {/* BAGIAN PERTAMA: DESKRIPSI BOARD OF DIRECTORS */}
-        {/* ========================================================= */}
+        {/* Board of Directors */}
         <section
           ref={bannerRef}
           className="relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-center"
@@ -63,11 +59,7 @@ export default function BoardPage() {
             </Transition>
           </div>
         </section>
-
-        {/* ========================================================= */}
-        {/* BAGIAN KEDUA: STRUKTUR ORGANISASI */}
-        {/* ========================================================= */}
-
+        {/* Struktur Organisasi */}
         <section
           ref={contentRef}
           className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center"
@@ -243,7 +235,6 @@ export default function BoardPage() {
           </div>
         </section>
       </div>
-      <ContactUsFooter />
     </>
   );
 }

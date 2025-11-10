@@ -5,8 +5,6 @@ import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
 
-import ContactUsFooter from "../components/ContactUsFooter";
-
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
@@ -132,7 +130,6 @@ export default function NewsPage() {
           </Transition>
         </div>
       </section>
-      <ContactUsFooter />
     </div>
   );
 }

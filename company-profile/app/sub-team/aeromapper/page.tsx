@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
-import ContactUsFooter from "@/app/components/ContactUsFooter";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -332,7 +331,6 @@ export default function Aeromapper() {
           ))}
         </div>
       </section>
-      <ContactUsFooter />
     </div>
   );
 }

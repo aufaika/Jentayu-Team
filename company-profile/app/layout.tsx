@@ -1,7 +1,9 @@
 import "./globals.css";
 
 import { Montserrat } from "next/font/google";
+
 import Navbar from "./navbar";
+import ContactUsFooter from "./components/ContactUsFooter";
 
 export const metadata = {
   title: "Jentayu Team",
@@ -22,6 +24,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main className="pt-16">{children}</main>
+        <ContactUsFooter />
       </body>
     </html>
   );

@@ -1,11 +1,10 @@
 "use client";
 
-import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
-import ContactUsFooter from "./components/ContactUsFooter";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -281,9 +280,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <ContactUsFooter />
     </div>
   );
 }

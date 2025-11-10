@@ -6,7 +6,6 @@ import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
 import { useState } from "react";
 
-import ContactUsFooter from "../components/ContactUsFooter";
 import Lightbox from "./Lightbox";
 import GalleryCard from "./GalleryCard";
 
@@ -97,8 +96,6 @@ export default function GalleryPage() {
         imageSrc={selectedImage}
         onClose={closeLightbox}
       />
-
-      <ContactUsFooter />
     </div>
   );
 }

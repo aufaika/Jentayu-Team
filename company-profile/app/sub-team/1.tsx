@@ -1,12 +1,6 @@
-// Pastikan Anda sudah menginstal dan mengkonfigurasi Tailwind CSS
-// import 'tailwindcss/tailwind.css';
-
 export default function SubTeam() {
   return (
     <div className="bg-gray-100">
-      {/* ========================================================= */}
-      {/* BAGIAN 1: JUDUL DAN DESKRIPSI TIM RACING PLANE */}
-      {/* ========================================================= */}
       <section className="min-h-screen py-20 px-8 text-center bg-white flex flex-col justify-center items-center">
         <h2
           className="text-5xl font-extrabold mb-4"
@@ -16,9 +10,6 @@ export default function SubTeam() {
         </h2>
       </section>
 
-      {/* ========================================================= */}
-      {/* BAGIAN 2: LOGO DAN DESKRIPSI TAMBAHAN */}
-      {/* ========================================================= */}
       <section className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
         {/* Placeholder Logo */}
         <div className="w-32 h-32 bg-gray-300 rounded-lg mb-8 flex items-center justify-center">
@@ -48,9 +39,7 @@ export default function SubTeam() {
           </p>
         </div>
       </section>
-      {/* ========================================================= */}
-      {/* BAGIAN 3: TEAM MEMBER */}
-      {/* ========================================================= */}
+      {/* Team Member */}
       <div
         className="relative w-full h-[80vh] bg-cover bg-center"
         style={{ backgroundImage: "url('/sub.png')" }}
@@ -90,9 +79,6 @@ export default function SubTeam() {
           <p style={{ color: "#515050" }}>SUCI RAHMADANI</p>
         </div>
       </section>
-      {/* ========================================================= */}
-      {/* BAGIAN 4: SUB DIVISI */}
-      {/* ========================================================= */}
       <section className="min-h-screen py-20 px-8 text-center bg-white flex flex-col justify-center items-center">
         {/* HEAD OF DIVISI - ELECTRICAL, DESIGN, MANUFACTURE */}
         <div className="flex flex-col md:flex-row justify-center items-start md:space-x-12 mb-16 w-full">
@@ -131,10 +117,6 @@ export default function SubTeam() {
           <p style={{ color: "#515050" }}>ABID NANTA LEGOWO</p>
         </div>
       </section>
-
-      {/* ========================================================= */}
-      {/* BAGIAN 5: LANJUTAN SUB DIVISI - STAFF ELECTRICAL */}
-      {/* ========================================================= */}
       <section className="min-h-screen py-20 px-8 text-center bg-gray-100 flex flex-col justify-center items-center">
         <div className="flex flex-col items-center mb-16">
           {/* Kotak foto */}

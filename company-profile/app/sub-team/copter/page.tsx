@@ -5,7 +5,6 @@ import Head from "next/head";
 import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
-import ContactUsFooter from "@/app/components/ContactUsFooter";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -210,7 +209,7 @@ export default function RacingPlane() {
         <title>Copter Team</title>
       </Head>
 
-      {/* ================= PAGE 1 : copter ================= */}
+      {/* Copter */}
       <section
         ref={bannerRef}
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
@@ -230,7 +229,7 @@ export default function RacingPlane() {
         </Transition>
       </section>
 
-      {/* ================= PAGE 2 : Description Team ================= */}
+      {/* Description Team */}
       <section
         ref={descRef}
         className="relative w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-6 text-center"
@@ -272,7 +271,7 @@ export default function RacingPlane() {
         </div>
       </section>
 
-      {/* ================= PAGE 3 : Team Member ================= */}
+      {/* Team Member*/}
       <section
         ref={teamRef}
         className="min-h-screen py-20 px-4 bg-gray-50 flex flex-col items-center text-gray-800"
@@ -347,8 +346,6 @@ export default function RacingPlane() {
           ))}
         </div>
       </section>
-
-      <ContactUsFooter />
     </div>
   );
 }

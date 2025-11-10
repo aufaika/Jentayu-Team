@@ -4,7 +4,6 @@
 import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 
-import ContactUsFooter from "../components/ContactUsFooter";
 import AchievementImage from "./AchievementImage";
 import AchievementCard from "./AchievementCard";
 
@@ -104,7 +103,6 @@ export default function AchievementPage() {
       {achievements.map((ach, i) => (
         <AchievementCard key={i} {...ach} />
       ))}
-      <ContactUsFooter />
     </div>
   );
 }
