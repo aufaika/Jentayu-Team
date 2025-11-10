@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
+
 import ContactUsFooter from "../components/ContactUsFooter";
 
 const montserrat = Montserrat({
@@ -57,7 +58,7 @@ export default function NewsPage() {
 
   return (
     <div className={`bg-white text-gray-800 ${montserrat.className}`}>
-      {/* ================= HERO ================= */}
+      {/* Hero */}
       <section
         ref={bannerRef}
         className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
@@ -76,7 +77,7 @@ export default function NewsPage() {
         </Transition>
       </section>
 
-      {/* ================= GRID NEWS ================= */}
+      {/* Grid News */}
       <section ref={newsRef} className="py-16 px-4 sm:px-8 md:px-16">
         <div className="max-w-6xl mx-auto">
           {/* Grid */}

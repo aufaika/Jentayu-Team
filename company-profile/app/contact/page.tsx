@@ -1,10 +1,11 @@
 "use client";
 
-import { Montserrat, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { Montserrat, Roboto } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
+
 import ContactUsFooter from "../components/ContactUsFooter";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });

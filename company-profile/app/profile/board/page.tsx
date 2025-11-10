@@ -1,9 +1,10 @@
 "use client";
 
-import ContactUsFooter from "@/app/components/ContactUsFooter";
 import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
+
+import ContactUsFooter from "@/app/components/ContactUsFooter";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
