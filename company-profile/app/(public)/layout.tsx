@@ -3,7 +3,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 
 import Navbar from "./navbar";
-import ContactUsFooter from "./components/ContactUsFooter";
+import ContactUsFooter from "../components/ContactUsFooter";
 
 export const metadata = {
   title: "Jentayu Team",
