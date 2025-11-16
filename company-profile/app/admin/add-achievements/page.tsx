@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Trophy, Plus, Trash2, Edit } from "lucide-react";
+import { Save, ArrowLeft } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
@@ -7,51 +7,33 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-export const mockAchievements = [
-  {
-    id: "1",
-    judul: "FINALIS NASIONAL KRTI 2024 - FIXED WING",
-    deskripsi: "-",
-    tahun: "2024",
-    foto: "/api/placeholder/80/80",
-  },
-  {
-    id: "2",
-    judul: "FINALIS NASIONAL KRTI 2024 - VTOL",
-    deskripsi: "-",
-    tahun: "2024",
-    foto: "https://placehold.co/600x400",
-  },
-  {
-    id: "3",
-    judul: "3RD PLACE WILAYAH 1 KRTI 2024 - VTOL",
-    deskripsi: "-",
-    tahun: "2024",
-    foto: "https://placehold.co/600x400",
-  },
-  {
-    id: "4",
-    judul: "FINALIS NASIONAL KRTI 2024 - RACING PLANE",
-    deskripsi: "-",
-    tahun: "2024",
-    foto: "https://placehold.co/600x400",
-  },
-  {
-    id: "5",
-    judul: "FINALIS NASIONAL KRTI 2023 - VTOL",
-    deskripsi: "-",
-    tahun: "2023",
-    foto: "https://placehold.co/600x400",
-  },
-];
+export default function AddAchievements() {
+  const [formData, setFormData] = useState({
+    title: "",
+    year: new Date().getFullYear().toString(),
+    description: "",
+    image: null as File | null,
+  });
 
-export default function ManageAchievements() {
-  const [achievements, setAchievements] = useState(mockAchievements);
+  const [imagePreview, setImagePreview] = useState<string>("");
 
-  const handleDelete = (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus achievement ini?")) {
-      setAchievements(achievements.filter((a) => a.id !== id));
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData({ ...formData, image: file });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log("Form submitted:", formData);
+    alert("Achievement berhasil disimpan!");
   };
 
   return (
@@ -209,92 +191,124 @@ export default function ManageAchievements() {
           </nav>
         </aside>
         <main className="flex-1 p-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <Trophy className="w-8 h-8 text-indigo-600" />
-                <h2 className="text-3xl font-bold text-gray-800">
-                  Kelola Achievements
-                </h2>
-              </div>
+            <div className="mb-8">
               <Link
-                href="/admin/add-achievement"
-                className="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium"
+                href="/admin/manage-achievements"
+                className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 mb-4"
               >
-                <Plus className="w-5 h-5" />
-                Tambah Baru
+                <ArrowLeft className="w-4 h-4" />
+                <span>Kembali ke Kelola Achievements</span>
               </Link>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Tambah Achievement Baru
+              </h2>
             </div>
 
-            {/* Table */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <table className="w-full">
-                <thead className="bg-gray-50 border-b">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Foto
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Judul
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Deskripsi
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Tahun
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Aksi
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {achievements.map((achievement) => (
-                    <tr key={achievement.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
-                        <img
-                          src={achievement.foto}
-                          alt={achievement.judul}
-                          className="w-16 h-16 object-cover rounded-lg"
-                        />
-                      </td>
-                      <td className="px-6 py-4">
-                        <p className="text-sm font-medium text-gray-900">
-                          {achievement.judul}
-                        </p>
-                      </td>
-                      <td className="px-6 py-4">
-                        <p className="text-sm text-gray-600">
-                          {achievement.deskripsi}
-                        </p>
-                      </td>
-                      <td className="px-6 py-4">
-                        <p className="text-sm text-gray-900">
-                          {achievement.tahun}
-                        </p>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <Link
-                            href={`/admin/edit-achievement/${achievement.id}`}
-                            className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
-                          >
-                            <Edit className="w-5 h-5" />
-                          </Link>
-                          <button
-                            onClick={() => handleDelete(achievement.id)}
-                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
-                          >
-                            <Trash2 className="w-5 h-5" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {/* Form */}
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white rounded-lg shadow-sm p-8"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Judul Achievement */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Judul Achievement
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
+                    placeholder="Masukkan judul achievement"
+                    required
+                  />
+                </div>
+
+                {/* Tahun */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tahun
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.year}
+                    onChange={(e) =>
+                      setFormData({ ...formData, year: e.target.value })
+                    }
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
+                    placeholder="2025"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Deskripsi Singkat */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Deskripsi Singkat
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData({ ...formData, description: e.target.value })
+                  }
+                  rows={6}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition resize-none"
+                  placeholder="Masukkan deskripsi achievement"
+                />
+              </div>
+
+              {/* Foto/Gambar */}
+              <div className="mb-8">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Foto/Gambar
+                </label>
+                {imagePreview && (
+                  <div className="mb-4">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="w-full h-64 object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+                <div className="flex items-center gap-4">
+                  <label className="cursor-pointer">
+                    <span className="inline-block px-6 py-3 bg-indigo-100 text-indigo-600 rounded-lg hover:bg-indigo-200 transition font-medium">
+                      Choose File
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="hidden"
+                    />
+                  </label>
+                  <span className="text-sm text-gray-500">
+                    {formData.image ? formData.image.name : "No file chosen"}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  Biarkan kosong jika tidak ingin mengganti foto.
+                </p>
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-medium"
+                >
+                  <Save className="w-5 h-5" />
+                  Simpan Achievement
+                </button>
+              </div>
+            </form>
           </div>
         </main>
       </div>
