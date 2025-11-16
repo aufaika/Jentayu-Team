@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Save, ArrowLeft } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
@@ -16,13 +17,15 @@ const montserrat = Montserrat({
 });
 
 export default function EditAchievements({ params }: EditAchievementProps) {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     title: "",
     year: "",
     description: "",
     image: null as File | null,
   });
-
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string>("");
 
   useEffect(() => {
@@ -59,7 +62,11 @@ export default function EditAchievements({ params }: EditAchievementProps) {
     e.preventDefault();
     // Handle form submission
     console.log("Form updated:", formData);
-    alert("Achievement berhasil diperbarui!");
+    setShowSuccess(true);
+
+    setTimeout(() => {
+      router.push("/admin/manage-achievements");
+    }, 1500);
   };
 
   return (
@@ -231,6 +238,13 @@ export default function EditAchievements({ params }: EditAchievementProps) {
                 Edit Achievement
               </h2>
             </div>
+
+            {/* Success Message */}
+            {showSuccess && (
+              <div className="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+                Info tim berhasil diperbarui!
+              </div>
+            )}
 
             {/* Form */}
             <form
