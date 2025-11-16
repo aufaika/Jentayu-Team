@@ -9,6 +9,13 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+interface Achievement {
+  id: string;
+  judul: string;
+  deskripsi: string;
+  foto: string;
+}
+
 export const mockAchievements = [
   {
     id: "1",
@@ -49,10 +56,16 @@ export const mockAchievements = [
 
 export default function ManageAchievements() {
   const [achievements, setAchievements] = useState(mockAchievements);
+  const [selectedAchievement, setSelectedAchievement] =
+    useState<Achievement | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleDelete = (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus achievement ini?")) {
-      setAchievements(achievements.filter((a) => a.id !== id));
+    const foundAchievement = mockAchievements.find(
+      (achievement) => achievement.id === id
+    );
+    if (!!foundAchievement) {
+      setSelectedAchievement(foundAchievement);
     }
   };
 
@@ -299,6 +312,67 @@ export default function ManageAchievements() {
             </div>
           </div>
         </main>
+        {/* Delete Confirmation Modal */}
+        {showDeleteModal && selectedAchievement && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+              <div className="p-6">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">
+                  <svg
+                    className="w-6 h-6 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                </div>
+
+                <h3 className="text-lg font-bold text-gray-800 text-center mb-2">
+                  Hapus Anggota
+                </h3>
+                <p className="text-gray-600 text-center mb-6">
+                  Apakah Anda yakin ingin menghapus{" "}
+                  <span className="font-semibold">
+                    {selectedAchievement.judul}
+                  </span>
+                  ?
+                </p>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => {
+                      setShowDeleteModal(false);
+                      setSelectedAchievement(null);
+                    }}
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-gray-50 transition"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    onClick={() => {
+                      setAchievements(
+                        achievements.filter(
+                          (a) => a.id !== selectedAchievement.id
+                        )
+                      );
+                      setShowDeleteModal(false);
+                      setSelectedAchievement(null);
+                    }}
+                    className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
