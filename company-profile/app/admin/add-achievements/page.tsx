@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Save, ArrowLeft } from "lucide-react";
 import { Montserrat } from "next/font/google";

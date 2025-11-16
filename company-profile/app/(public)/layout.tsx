@@ -1,5 +1,3 @@
-import "./globals.css";
-
 import { Montserrat } from "next/font/google";
 
 import Navbar from "./navbar";

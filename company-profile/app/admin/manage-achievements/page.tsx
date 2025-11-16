@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Trophy, Plus, Trash2, Edit } from "lucide-react";
 import { Montserrat } from "next/font/google";
@@ -13,7 +15,7 @@ export const mockAchievements = [
     judul: "FINALIS NASIONAL KRTI 2024 - FIXED WING",
     deskripsi: "-",
     tahun: "2024",
-    foto: "/api/placeholder/80/80",
+    foto: "https://placehold.co/600x400",
   },
   {
     id: "2",
@@ -219,7 +221,7 @@ export default function ManageAchievements() {
                 </h2>
               </div>
               <Link
-                href="/admin/add-achievement"
+                href="/admin/add-achievements"
                 className="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium"
               >
                 <Plus className="w-5 h-5" />
@@ -277,7 +279,7 @@ export default function ManageAchievements() {
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
                           <Link
-                            href={`/admin/edit-achievement/${achievement.id}`}
+                            href={`/admin/edit-achievements/${achievement.id}`}
                             className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
                           >
                             <Edit className="w-5 h-5" />
