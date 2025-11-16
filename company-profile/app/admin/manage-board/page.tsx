@@ -1,12 +1,138 @@
+"use client";
+
 import { Montserrat } from "next/font/google";
+import { useState } from "react";
+
+interface BoardMember {
+  id: string;
+  position: string;
+  name: string;
+  order: number;
+  group: "Directors" | "Non-Technical";
+  photo: string | null;
+}
 
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
 export default function ManageBoard() {
+  const [members, setMembers] = useState<BoardMember[]>([
+    {
+      id: "1",
+      position: "GENERAL MANAGER",
+      name: "MUHAMMAD ULIL AHKAM",
+      order: 1,
+      group: "Directors",
+      photo: null,
+    },
+    {
+      id: "2",
+      position: "HEAD OF INTERNAL",
+      name: "ARIESTA PERMATASARI",
+      order: 2,
+      group: "Non-Technical",
+      photo: null,
+    },
+    {
+      id: "3",
+      position: "HEAD OF TECHNICAL",
+      name: "MUHAMMAD HASAN AL FATHIN",
+      order: 3,
+      group: "Directors",
+      photo: null,
+    },
+    {
+      id: "4",
+      position: "HEAD OF EKSTERNAL",
+      name: "CALISTA ELECTRA NARESWARI",
+      order: 4,
+      group: "Non-Technical",
+      photo: null,
+    },
+    {
+      id: "5",
+      position: "HEAD OF NON TECHNICAL",
+      name: "HANIFAH ADITYASARI PUTRI WIYANRES",
+      order: 5,
+      group: "Directors",
+      photo: null,
+    },
+    {
+      id: "6",
+      position: "HEAD OF MEDIA",
+      name: "DHAFIN RAHMAT RAMDHANI",
+      order: 6,
+      group: "Non-Technical",
+      photo: null,
+    },
+  ]);
+
+  const [formData, setFormData] = useState({
+    position: "",
+    name: "",
+    order: 0,
+    group: "Directors" as "Directors" | "Non-Technical",
+    photo: null as string | null,
+  });
+
+  const [fileName, setFileName] = useState("No file chosen");
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "order" ? parseInt(value) || 0 : value,
+    }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({
+          ...prev,
+          photo: reader.result as string,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (!formData.position || !formData.name) {
+      alert("Mohon isi jabatan dan nama anggota");
+      return;
+    }
+
+    const newMember: BoardMember = {
+      id: Date.now().toString(),
+      position: formData.position,
+      name: formData.name,
+      order: formData.order,
+      group: formData.group,
+      photo: formData.photo,
+    };
+
+    setMembers((prev) => [...prev, newMember]);
+
+    // Clear form
+    setFormData({
+      position: "",
+      name: "",
+      order: 0,
+      group: "Directors",
+      photo: null,
+    });
+    setFileName("No file chosen");
+  };
+
   return (
-    <div className={`bg-gray-50 ${montserrat.className}`}>
+    <div className={`bg-gray-50 font-sans ${montserrat.className}`}>
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside className="w-64 bg-blue-900 text-white">
@@ -160,6 +286,7 @@ export default function ManageBoard() {
             </a>
           </nav>
         </aside>
+
         {/* Main Content */}
         <main className="flex-1 p-8">
           <div className="max-w-7xl mx-auto">
@@ -169,13 +296,16 @@ export default function ManageBoard() {
                   Tambah Anggota Direksi
                 </h2>
 
-                <form className="bg-white rounded-lg shadow p-6">
+                <div className="bg-white rounded-lg shadow p-6">
                   <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-medium mb-2">
                       Jabatan
                     </label>
                     <input
                       type="text"
+                      name="position"
+                      value={formData.position}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       placeholder="Contoh: GENERAL MANAGER"
                     />
@@ -187,6 +317,9 @@ export default function ManageBoard() {
                     </label>
                     <input
                       type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       placeholder="Nama lengkap"
                     />
@@ -198,7 +331,9 @@ export default function ManageBoard() {
                     </label>
                     <input
                       type="number"
-                      value="0"
+                      name="order"
+                      value={formData.order}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                     />
                   </div>
@@ -207,7 +342,12 @@ export default function ManageBoard() {
                     <label className="block text-gray-700 text-sm font-medium mb-2">
                       Grup
                     </label>
-                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <select
+                      name="group"
+                      value={formData.group}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    >
                       <option value="Directors">Directors</option>
                       <option value="Non-Technical">Non-Technical</option>
                     </select>
@@ -224,16 +364,15 @@ export default function ManageBoard() {
                           type="file"
                           className="hidden"
                           accept="image/*"
+                          onChange={handleFileChange}
                         />
                       </label>
-                      <span className="text-gray-500 text-sm">
-                        No file chosen
-                      </span>
+                      <span className="text-gray-500 text-sm">{fileName}</span>
                     </div>
                   </div>
 
                   <button
-                    type="submit"
+                    onClick={handleSubmit}
                     className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center justify-center"
                   >
                     <svg
@@ -251,14 +390,15 @@ export default function ManageBoard() {
                     </svg>
                     Tambah Anggota
                   </button>
-                </form>
+                </div>
               </div>
+
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">
                   Daftar Direksi Saat Ini
                 </h2>
 
-                <div className="bg-white rounded-lg shadow overflow-x-scroll">
+                <div className="bg-white rounded-lg shadow overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
@@ -277,210 +417,64 @@ export default function ManageBoard() {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      <tr>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              ></path>
-                            </svg>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs font-medium text-gray-900">
-                            GENERAL MANAGER
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs text-gray-900">
-                            MUHAMMAD ULIL AHKAM
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                            Directors
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              ></path>
-                            </svg>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs font-medium text-gray-900">
-                            HEAD OF INTERNAL
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs text-gray-900">
-                            ARIESTA PERMATASARI
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                            Non-Technical
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              ></path>
-                            </svg>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs font-medium text-gray-900">
-                            HEAD OF TECHNICAL
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs text-gray-900">
-                            MUHAMMAD HASAN AL FATHIN
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                            Directors
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              ></path>
-                            </svg>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs font-medium text-gray-900">
-                            HEAD OF EKSTERNAL
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs text-gray-900">
-                            CALISTA ELECTRA NARESWARI
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                            Non-Technical
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              ></path>
-                            </svg>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs font-medium text-gray-900">
-                            HEAD OF NON TECHNICAL
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs text-gray-900">
-                            HANIFAH ADITYASARI PUTRI WIYANRES
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                            Directors
-                          </span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              ></path>
-                            </svg>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs font-medium text-gray-900">
-                            HEAD OF MEDIA
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <div className="text-xs text-gray-900">
-                            DHAFIN RAHMAT RAMDHANI
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                            Non-Technical
-                          </span>
-                        </td>
-                      </tr>
+                      {[...members]
+                        .sort((a, b) => a.order - b.order)
+                        .map((member) => (
+                          <tr key={member.id}>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              {member.photo ? (
+                                <img
+                                  src={member.photo}
+                                  alt={member.name}
+                                  className="w-10 h-10 rounded-full object-cover"
+                                />
+                              ) : (
+                                <div
+                                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                                    member.group === "Directors"
+                                      ? "bg-blue-900"
+                                      : "bg-yellow-600"
+                                  }`}
+                                >
+                                  <svg
+                                    className="w-6 h-6 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              )}
+                            </td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <div className="text-xs font-medium text-gray-900">
+                                {member.position}
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <div className="text-xs text-gray-900">
+                                {member.name}
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <span
+                                className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                                  member.group === "Directors"
+                                    ? "bg-blue-100 text-blue-800"
+                                    : "bg-green-100 text-green-800"
+                                }`}
+                              >
+                                {member.group}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
