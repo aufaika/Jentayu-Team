@@ -1,6 +1,12 @@
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
+
 export default function AddGalleryPage() {
   return (
-    <div className="bg-gray-50">
+    <div className={`bg-gray-50 ${montserrat.className}`}>
       <div className="flex min-h-screen">
         <aside className="w-64 bg-blue-900 text-white">
           <div className="p-6">
