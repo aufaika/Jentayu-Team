@@ -61,6 +61,7 @@ export default function ManageAchievements() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleDelete = (id: string) => {
+    setShowDeleteModal(true);
     const foundAchievement = mockAchievements.find(
       (achievement) => achievement.id === id
     );
