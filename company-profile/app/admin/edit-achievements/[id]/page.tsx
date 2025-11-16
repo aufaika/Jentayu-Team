@@ -1,22 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Save, ArrowLeft } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
-interface EditAchievementProps {
-  params: {
+type PageProps = {
+  params: Promise<{
     id: string;
-  };
-}
+  }>;
+};
 
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-export default function EditAchievements({ params }: EditAchievementProps) {
+export default function EditAchievements({ params }: PageProps) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -27,6 +28,8 @@ export default function EditAchievements({ params }: EditAchievementProps) {
   });
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string>("");
+
+  const { id: achievementId } = React.use(params);
 
   useEffect(() => {
     // Simulating data fetch
@@ -44,7 +47,7 @@ export default function EditAchievements({ params }: EditAchievementProps) {
       image: null,
     });
     setImagePreview(existingData.existingImage);
-  }, [params.id]);
+  }, [achievementId]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

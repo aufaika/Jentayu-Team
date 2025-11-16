@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Montserrat } from "next/font/google";
@@ -38,15 +39,15 @@ const mockGalleryItems: GalleryItem[] = [
   },
 ];
 
-interface EditGalleryParams {
-  params: {
-    id: string
-  } 
-}
+type PageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
 
-export default function EditGalleryItem({ params }: EditGalleryParams) {
+export default function EditGalleryItem({ params }: PageProps) {
   const router = useRouter();
-  const id  = params.id;
+  const { id } = React.use(params);
 
   const [title, setTitle] = useState<string>("");
   const [image, setImage] = useState<string>("");
