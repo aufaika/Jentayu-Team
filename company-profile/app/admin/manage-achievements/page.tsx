@@ -81,7 +81,7 @@ export default function ManageAchievements() {
           <nav className="mt-6">
             <a
               href="/admin"
-              className="flex items-center px-6 py-3 hover:bg-blue-800 border-l-4 border-white"
+              className="flex items-center px-6 py-3 hover:bg-blue-800"
             >
               <svg
                 className="w-5 h-5 mr-3"
@@ -145,7 +145,7 @@ export default function ManageAchievements() {
 
             <a
               href="/admin/manage-achievements"
-              className="flex items-center px-6 py-3 bg-blue-800 transition"
+              className="flex items-center px-6 py-3 bg-blue-800 border-l-4 border-white transition"
             >
               <svg
                 className="w-5 h-5 mr-3"

@@ -1,12 +1,82 @@
+"use client";
+
+import React, { useState } from "react";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+interface Sponsor {
+  id: string;
+  name: string;
+  logo: string | null;
+}
+
 export default function ManageSponsorsPage() {
+  const [sponsors, setSponsors] = useState<Sponsor[]>([
+    { id: "0", name: "BUAYA", logo: "https://placehold.co/600x400?text=BUAYA" },
+    { id: "1", name: "ICA", logo: null },
+    {
+      id: "2",
+      name: "GEMFAN",
+      logo: "https://placehold.co/600x400?text=GEMFAN",
+    },
+    {
+      id: "3",
+      name: "SOLIDWORKS",
+      logo: "https://placehold.co/600x400?text=SOLIDWORKS",
+    },
+  ]);
+
+  const [newSponsor, setNewSponsor] = useState<{
+    name: string;
+    logo: string | null;
+  }>({
+    name: "",
+    logo: null,
+  });
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [selectedFileName, setSelectedFileName] =
+    useState<string>("No file chosen");
+
+  const handleAddSponsor = (): void => {
+    if (newSponsor.name.trim()) {
+      const newId = Date.now().toString();
+      setSponsors([...sponsors, { id: newId, ...newSponsor }]);
+      setNewSponsor({ name: "", logo: null });
+      setSelectedFileName("No file chosen");
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewSponsor({ ...newSponsor, logo: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+      setSelectedFileName(file.name);
+    }
+  };
+
+  const handleDelete = (id: string): void => {
+    if (window.confirm("Apakah Anda yakin ingin menghapus sponsor ini?")) {
+      setSponsors(sponsors.filter((s) => s.id !== id));
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    }
+  };
+
+  const handleEdit = (sponsorId: string): void => {
+    window.location.href = `/admin/edit-sponsors/${sponsorId}`;
+  };
+
   return (
-    <div className={`bg-gray-50 ${montserrat.className}`}>
+    <div className={`bg-gray-50 min-h-screen ${montserrat.className}`}>
       <div className="flex min-h-screen">
         <aside className="w-64 bg-blue-900 text-white">
           <div className="p-6">
@@ -159,150 +229,172 @@ export default function ManageSponsorsPage() {
             </a>
           </nav>
         </aside>
-         <main className="flex-1 p-8">
-            <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-800 mb-8">Kelola Sponsor</h2>
-                
-                <div className="bg-white rounded-lg shadow p-6 mb-8">
-                    <div className="flex items-center text-indigo-600 font-semibold mb-4">
-                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        Tambah Sponsor Baru
-                    </div>
-                    
-                    <form className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div>
-                            <label className="block text-gray-700 text-sm font-medium mb-2">Nama Sponsor</label>
-                            <input 
-                                type="text" 
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                                placeholder="Misal: PT Dirgantara"
-                            />
-                        </div>
-                        
-                        <div>
-                            <label className="block text-gray-700 text-sm font-medium mb-2">Logo Sponsor</label>
-                            <div className="flex items-center gap-2">
-                                <label className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-50 transition text-sm">
-                                    Choose File
-                                    <input type="file" className="hidden" accept="image/*" />
-                                </label>
-                                <span className="text-gray-500 text-sm">No file chosen</span>
-                            </div>
-                        </div>
-                        
-                        <div className="flex items-end">
-                            <button 
-                                type="submit" 
-                                className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
-                            >
-                                Simpan Sponsor
-                            </button>
-                        </div>
-                    </form>
+
+        <main className="flex-1 p-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+              Kelola Sponsor
+            </h2>
+
+            {showSuccess && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                Operasi berhasil dilakukan!
+              </div>
+            )}
+
+            <div className="bg-white rounded-lg shadow p-6 mb-8">
+              <div className="flex items-center text-indigo-600 font-semibold mb-4">
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
+                Tambah Sponsor Baru
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
+                    Nama Sponsor
+                  </label>
+                  <input
+                    type="text"
+                    value={newSponsor.name}
+                    onChange={(e) =>
+                      setNewSponsor({ ...newSponsor, name: e.target.value })
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="Misal: PT Dirgantara"
+                  />
                 </div>
-            
-                <div className="bg-white rounded-lg shadow overflow-hidden">
-                    <div className="p-6 border-b border-gray-200">
-                        <h3 className="text-xl font-semibold text-gray-800">Daftar Sponsor (6)</h3>
-                    </div>
-                    
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                            <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">LOGO</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAMA SPONSOR</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <img src="https://placehold.co/600x400?text=BUAYA" alt="Sponsor" className="h-10 object-contain" />
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">0</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right">
-                                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-2 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                        </svg>
-                                    </button>
-                                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <span className="text-gray-400 text-xs">ICA</span>
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">1</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right">
-                                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-2 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                        </svg>
-                                    </button>
-                                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <img src="https://placehold.co/600x400?text=GEMFAN" alt="Sponsor" className="h-10 object-contain" />
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">2</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right">
-                                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-2 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                        </svg>
-                                    </button>
-                                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <img src="https://placehold.co/600x400?text=SOLIDWORKS" alt="Sponsor" className="h-10 object-contain" />
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">3</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right">
-                                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-2 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                        </svg>
-                                    </button>
-                                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm">
-                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
+                    Logo Sponsor
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <label className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-50 transition text-sm">
+                      Choose File
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                    </label>
+                    <span className="text-gray-500 text-sm">
+                      {selectedFileName}
+                    </span>
+                  </div>
                 </div>
+
+                <div className="flex items-end">
+                  <button
+                    onClick={handleAddSponsor}
+                    className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                  >
+                    Simpan Sponsor
+                  </button>
+                </div>
+              </div>
             </div>
+
+            <div className="bg-white rounded-lg shadow overflow-hidden">
+              <div className="p-6 border-b border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  Daftar Sponsor ({sponsors.length})
+                </h3>
+              </div>
+
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      LOGO
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      NAMA SPONSOR
+                    </th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      AKSI
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {sponsors.map((sponsor) => (
+                    <tr key={sponsor.id}>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {sponsor.logo ? (
+                          <img
+                            src={sponsor.logo}
+                            alt={sponsor.name}
+                            className="h-10 object-contain"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span className="text-gray-400 text-xs">
+                              {sponsor.name.substring(0, 3).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900">
+                          {sponsor.name}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <button
+                          onClick={() => handleEdit(sponsor.id)}
+                          className="text-indigo-600 hover:text-indigo-900 mr-4"
+                        >
+                          <svg
+                            className="w-5 h-5 inline"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                            ></path>
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(sponsor.id)}
+                          className="text-red-600 hover:text-red-900"
+                        >
+                          <svg
+                            className="w-5 h-5 inline"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            ></path>
+                          </svg>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </main>
       </div>
     </div>
