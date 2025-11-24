@@ -4,6 +4,9 @@ import { Montserrat } from "next/font/google";
 import { Transition } from "@headlessui/react";
 import { useInView } from "react-intersection-observer";
 
+import VisionMissionSection from "./VisionMissonSection";
+import FilosofiLogoSection from "./FilosofiLogoSection";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
@@ -89,6 +92,12 @@ export default function AboutPage() {
           community's goal.
         </Transition>
       </section>
+
+      {/* SECTION KETIGA: VISI DAN MISI */}
+      <VisionMissionSection />
+
+      {/* SECTION KEEMPAT: FILOSOFI LOGO */}
+      <FilosofiLogoSection />
     </div>
   );
 }
